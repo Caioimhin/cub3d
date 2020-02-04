@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/02/22 23:12:10 by pbondoer          #+#    #+#              #
-#    Updated: 2020/01/16 10:56:33 by kparis           ###   ########.fr        #
+#    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
+#    Updated: 2020/02/04 13:26:26 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,24 +44,25 @@ obj:
 	mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
 
 $(FT_LIB):
-	make -C $(FT)
+	@make -C $(FT)
 
 $(MLX_LIB):
-	make -C $(MLX)
+	@make -C $(MLX)
+	@echo "MLX Done"
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
+	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
 
 clean:
-	rm -rf $(OBJDIR)
-	make -C $(FT) clean
-	make -C $(MLX) clean
+	@rm -rf $(OBJDIR)
+	@make -C $(FT) clean
+	@make -C $(MLX) clean
 
 fclean: clean
-	rm -rf $(NAME)
-	make -C $(FT) fclean
+	@rm -rf $(NAME)
+	@make -C $(FT) fclean
 
 re: fclean all
