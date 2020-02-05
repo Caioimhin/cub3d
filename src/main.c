@@ -6,57 +6,53 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/04 15:41:53 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/05 17:12:11 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "cub3d.h"
+#include <fcntl.h>
 
-int main(void)
+int		main(int ac, char **av)
 {
-	t_mlx data;
-	t_img img;
+	char *line;
+	int fd;
+	t_map map;
 
-	data.mlx = mlx_init();
-	data.window = mlx_new_window(data.mlx, 600, 600, "Cub3d");
-	img.img = mlx_new_image(data.mlx, 600, 600);
-	img.adress = mlx_get_data_addr(img.img, &img.bits_per_pxl, &img.line_length, &img.endian);
-	clear_screen(&img, 600, 600);
-	mlx_put_image_to_window(data.mlx, data.window, img.img, 0, 0);
-	mlx_hook(data.window, 17, 0, close, &data);
-	mlx_loop(data.mlx);
-	return (EXIT_SUCCESS);
-}
-
-int		close()
-{
-	exit(0);
-}
-
-void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->adress + (y * img->line_length + x * (img->bits_per_pxl / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	clear_screen(t_img *img, int x_max, int y_max)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y < y_max)
+	line = 0;
+	//checker le nb d'arguments
+	(void)av;
+	if (ac < 2 || ac > 4)
 	{
-		x = 0;
-		while (x < x_max)
-		{
-			ft_mlx_pixel_put(img, x, y, 0x00FFFFFF);
-			x += 1;
-		}
-		y += 1;
+		ft_putstr("Error\nWrong number of arguments");
+		exit(0);
 	}
-	img->img_cpy = img->img;
+	if (ac == 3)
+	{
+		if (ft_strncmp("-save", av[1], ft_strlen("-save")) != 0)
+		{
+			ft_putstr("Error\nWrong arguments order");
+			exit(0);
+		}
+	}
+	//parser et vérifier la maps
+	fd = (ac == 2) ?  open(av[1], O_RDONLY) : open(av[2], O_RDONLY);
+	while(get_next_line(fd, &line))
+	{
+		(line[0] == 'R') ? map.res = ft_strdup(&line[2]) : 0;
+		(line[0] == 'N') ? map.north = ft_strdup(&line[3]) : 0;
+		(line[0] == 'S' && line[1] == 'O') ? map.south = ft_strdup(&line[3]) : 0;
+		(line[0] == 'W') ? map.west = ft_strdup(&line[3]) : 0;
+		(line[0] == 'E') ? map.east = ft_strdup(&line[3]) : 0;
+		(line[0] == 'S' && line[1] == ' ') ? map.sprite = ft_strdup(&line[2]) : 0;
+		(line[0] == 'F') ? map.floor = ft_strdup(&line[2]) : 0;
+		(line[0] == 'C') ? map.ceiling = ft_strdup(&line[2]) : 0;
+	}
+	ft_putendl(map.east);
+	//afficher la premiere image
+	//prendre un screen si besoin
+	//hook des touches
+	//loop
+	return (1);
 }

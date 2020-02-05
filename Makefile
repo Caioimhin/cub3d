@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/02/04 13:26:26 by kparis           ###   ########.fr        #
+#    Updated: 2020/02/05 14:18:22 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(FT_LIB):
 
 $(MLX_LIB):
 	@make -C $(MLX)
-	@echo "MLX Done"
+	@echo "\033[92mMlx Done\033[0m"
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
