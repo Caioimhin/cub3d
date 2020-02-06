@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/05 17:06:16 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/06 16:26:16 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "../libft/libft.h"
+#define RES_X_MAX 1920
+#define	RES_Y_MAX 1080
 
 typedef struct	s_img
 {
@@ -27,7 +29,8 @@ typedef struct	s_img
 
 typedef struct	s_map
 {
-	char	*res;
+	int		res_x;
+	int		res_y;
 	char	*north;
 	char	*south;
 	char	*west;
@@ -43,3 +46,5 @@ typedef	struct	s_mlx {
 	void		*window;
 	t_img		*img;
 }				t_mlx;
+
+void			parser_cub(char *line, t_map *map);

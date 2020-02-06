@@ -6,14 +6,15 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/02/05 14:18:22 by kparis           ###   ########.fr        #
+#    Updated: 2020/02/06 15:09:55 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= cub3d
 
 # src / obj files
-SRC		= main.c
+SRC	=	main.c \
+		parser_cub.c \
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
