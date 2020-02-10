@@ -4,8 +4,8 @@ SO ../resources/south
 WE ../resources/west
 EA ../resources/east
 S ../resources/sprite1
-F 220,100,0
-C 225,30,0
+F 82,198,152
+C 0,0,255
 
 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 1 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1

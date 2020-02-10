@@ -6,11 +6,46 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 14:22:44 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/06 16:27:30 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/10 10:53:34 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
  #include "cub3d.h"
+
+int		get_rgb(int r, int g, int b)
+{
+	int	rgb;
+
+	rgb = r;
+	rgb = (rgb << 8) + g;
+	rgb = (rgb << 8) + b;
+	return (rgb);
+}
+
+ static void	parse_color(char *line, t_map *map)
+ {
+	int i;
+	int r;
+	int g;
+	int b;
+
+	i = 0;
+	while (!ft_isdigit(line[i]))
+		i++;
+	r = ft_atoi(&line[i]);
+	while (line[i] != ',')
+		i++;
+	i++;
+	g = ft_atoi(&line[i]);
+	while (line[i] != ',')
+		i++;
+	i++;
+	b = ft_atoi(&line[i]);
+	if (line[0] == 'F')
+		map->floor = get_rgb(r, g, b);
+	else if (line[0] == 'C')
+		map->ceiling = get_rgb(r, g, b);
+ }
 
  static void	parse_path(char *line, t_map *map)
  {
@@ -49,4 +84,6 @@
 	if (line[0] == 'R')
 		parse_res(line, map);
 	parse_path(line, map);
+	if (line[0] == 'F' || line[0] == 'C')
+		parse_color(line, map);
  }
