@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/02/06 15:09:55 by kparis           ###   ########.fr        #
+#    Updated: 2020/02/10 14:54:39 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,9 @@ NAME	= cub3d
 # src / obj files
 SRC	=	main.c \
 		parser_cub.c \
+		utils.c \
+		keypress.c \
+		parse_map.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

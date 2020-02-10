@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 10:54:44 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:50:42 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 
 int		main(int ac, char **av)
 {
-	char *line;
 	int fd;
 	t_map map;
 	t_mlx data;
 
-	line = 0;
+	data.map = &map;
 	//checker le nb d'arguments
 	if (ac < 2 || ac > 4)
 	{
@@ -36,17 +35,21 @@ int		main(int ac, char **av)
 			exit(0);
 		}
 	}
-	//parser et vérifier la maps
 	fd = (ac == 2) ?  open(av[1], O_RDONLY) : open(av[2], O_RDONLY);
-	while(get_next_line(fd, &line))
-		parser_cub(line, &map);
+	parse_map(data.map, fd);
 	close(fd);
 	//afficher la premiere image
-	data.mlx = mlx_init();
+	if (!(data.mlx = mlx_init()))
+	{
+		ft_putstr("Error\nCouldn't init MLX pointer.");
+		return(EXIT_FAILURE);
+	}
 	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
-	mlx_string_put(data.mlx, data.window, (map.res_x/2), (map.res_y/2), map.floor, ft_itoa(map.res_x));
+	mlx_string_put(data.mlx, data.window, (map.res_x/2), (map.res_y/2), map.floor, data.map->sprite);
 	//prendre un screen si besoin
 	//hook des touches
+	mlx_hook(data.window, 17, 0, close_cub, &data);
+	mlx_hook(data.window, 2, 1L<<0, handle_keypress, &data);
 	//loop
 	mlx_loop(data.mlx);
 	return (EXIT_SUCCESS);

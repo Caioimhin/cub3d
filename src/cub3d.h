@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/07 12:56:58 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/10 15:12:38 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct	s_map
 	char	*sprite;
 	int		floor;
 	int		ceiling;
+	int		start;
+	char	**map;
 }				t_map;
 
 
@@ -45,6 +47,10 @@ typedef	struct	s_mlx {
 	void		*mlx;
 	void		*window;
 	t_img		*img;
+	t_map		*map;
 }				t_mlx;
 
 void			parser_cub(char *line, t_map *map);
+int				close_cub(t_mlx *data);
+int				handle_keypress(int keycode, t_mlx *data);
+void			parse_map(t_map *map, int fd);
