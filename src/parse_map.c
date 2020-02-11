@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 16:25:49 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/11 10:57:34 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int		map_start(int j, int i, char *line, t_map *map)
 {
 	while (i < (int)ft_strlen(line))
 	{
-		if (ft_atoi(&line[i]) != 1)
+		while (!ft_isdigit(line[i]))
+			i += 1;
+		if (line[i] != 1)
 		{
 			ft_putendl("Error\nInvalid map");
 			exit(EXIT_FAILURE);
@@ -47,11 +49,10 @@ int		map_start(int j, int i, char *line, t_map *map)
 	}
 	map->map[j] = line;
 	map->start = 1;
-	j++;
+	j += 1;
 	return (j);
 }
 
-//parser et vérifier la maps
 void	parse_map(t_map *map, int fd)
 {
 	char *line;
