@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 16:24:25 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:17:13 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@ typedef struct	s_map
 	int		floor;
 	int		ceiling;
 	int		start;
-	char	**map;
+	int		**map;
 	int		player;
+	int		width_map;
+	int		height_map;
 }				t_map;
 
 

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 12:04:05 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 15:49:54 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/11 11:19:13 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@
 
 int close_cub(t_mlx *data)
 {
-	int i;
-
-	i = 0;
-	while (data->map->map[i])
-		free(data->map->map[i++]);
-	free(data->map->map);
+	(void)data;
 	exit(EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 15:50:42 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/12 13:32:53 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,19 @@ int		main(int ac, char **av)
 		return(EXIT_FAILURE);
 	}
 	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
-	mlx_string_put(data.mlx, data.window, (map.res_x/2), (map.res_y/2), map.floor, data.map->sprite);
+	int y = 0;
+	int x = 0;
+
+	while (y < data.map->height_map)
+	{
+		x = 0;
+		while (x < data.map->width_map)
+		{
+			mlx_string_put(data.mlx, data.window, 100 + (x * 50), 100 + (y * 50), map.floor, ft_itoa(data.map->map[y][x]));
+			x++;
+		}
+		y++;
+	}
 	//prendre un screen si besoin
 	//hook des touches
 	mlx_hook(data.window, 17, 0, close_cub, &data);
