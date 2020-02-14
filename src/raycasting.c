@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/05 12:04:05 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/13 12:31:12 by kparis           ###   ########.fr       */
+/*   Created: 2020/02/13 10:30:45 by kparis            #+#    #+#             */
+/*   Updated: 2020/02/13 15:11:56 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "mlx.h"
 
-void	get_img_adrr(t_mlx *data)
+int raycasting(t_mlx *data)
 {
-	data->img->adress = mlx_get_data_addr(data->img->img, &data->img->bits_per_pxl, &data->img->line_length, &data->img->endian);
-}
+  //pts de départ de la cam
+  double pos_x = 24, pos_y = 11;
+  //direction ou regarde la cam
+  double dir_x = 0, dir_y = 1;
+  //vecteur plan de projection : ???
+  double plane_x = 0, plane_y = 1;
 
-void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->adress + (y * img->line_length + x * (img->bits_per_pxl / 8));
-	*(unsigned int*)dst = color;
-}
-
-int close_cub(t_mlx *data)
-{
-	data->key->key_esc = 1;
-	return (0);
+  return(1);
 }

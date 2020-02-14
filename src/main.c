@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/12 13:32:53 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/13 15:28:57 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,19 @@ int		main(int ac, char **av)
 {
 	int fd;
 	t_map map;
+	t_key key;
+	t_img img;
 	t_mlx data;
 
+
 	data.map = &map;
+	data.key = &key;
+	data.img = &img;
+	data.key->key_up = 0;
+	data.key->key_down = 0;
+	data.key->key_left = 0;
+	data.key->key_right = 0;
+	data.key->key_esc = 0;
 	//checker le nb d'arguments
 	if (ac < 2 || ac > 4)
 	{
@@ -45,23 +55,24 @@ int		main(int ac, char **av)
 		return(EXIT_FAILURE);
 	}
 	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
-	int y = 0;
-	int x = 0;
+	//prendre un screen si besoin
+	//hook des touches
+	data.img->img = mlx_new_image(data.mlx, map.res_x, map.res_y);
+	get_img_adrr(&data);
+	int x, y = 0;
 
-	while (y < data.map->height_map)
+	while (y < data.map->res_y)
 	{
 		x = 0;
-		while (x < data.map->width_map)
+		while (x < data.map->res_x)
 		{
-			mlx_string_put(data.mlx, data.window, 100 + (x * 50), 100 + (y * 50), map.floor, ft_itoa(data.map->map[y][x]));
+			ft_mlx_pixel_put(data.img, x, y, 0x00FFFFFF);
 			x++;
 		}
 		y++;
 	}
-	//prendre un screen si besoin
-	//hook des touches
-	mlx_hook(data.window, 17, 0, close_cub, &data);
-	mlx_hook(data.window, 2, 1L<<0, handle_keypress, &data);
+	mlx_put_image_to_window(data.mlx, data.window, data.img->img, 0, 0);
+	//raycasting(&data);
 	//loop
 	mlx_loop(data.mlx);
 	return (EXIT_SUCCESS);
