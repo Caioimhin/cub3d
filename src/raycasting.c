@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 10:30:45 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/14 15:09:42 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/14 16:41:22 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int raycasting(t_mlx *data)
 {
 	//pts de départ de la cam
-	double pos_x = 24, pos_y = 11;
+	double pos_x = 26, pos_y = 11;
 	//direction ou regarde la cam
 	double dir_x = 0, dir_y = 1;
 	//vecteur plan de projection : ???
@@ -108,17 +108,14 @@ int raycasting(t_mlx *data)
 					map_y += step_y;
 					side = 1;
 				}
-				if (data->map->map[map_x][map_y] > 0)
+				if (data->map->map[map_y][map_x] > 0)
 					hit = 1;
 			}
-
 			//correction optique ici
 			if (side == 0)
 				real_wall_dist = fabs((map_x - ray_pos_x + (1 - step_x) / 2) / ray_dir_x);
 			else
 				real_wall_dist = fabs((map_y - ray_pos_y + (1 - step_y) / 2) / ray_dir_y);
-
-
 			//trouver la hauteur de la colone a tracer
 			line_height = abs(data->map->res_y / (int)real_wall_dist);
 			draw_start = (int)-line_height / 2 + data->map->res_y / 2;
@@ -127,14 +124,14 @@ int raycasting(t_mlx *data)
 				draw_start = 0;
 			if (draw_end >= data->map->res_y)
 				draw_end = data->map->res_y - 1;
-
 			//tracer
-			(side == 0) ? color = 0xf2f2f2 : 0xCCCCCC;
+			(side == 0) ? color = 0x00f2f2f2 : 0x00CCCCCC;
 			while (y < draw_end)
 			{
-				ft_mlx_pixel_put(data->img->img, (int)x, (int)y, color);
+				ft_mlx_pixel_put(data->img, (int)x, (int)y, color);
 				y += 1;
 			}
+			x++;
 		}
 		mlx_put_image_to_window(data->mlx, data->window, data->img->img, 0, 0);
 	}

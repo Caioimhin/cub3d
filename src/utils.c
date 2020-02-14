@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 12:04:05 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/14 15:09:42 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/14 16:00:26 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_mlx_pixel_put(t_img *img, int x, int y, int color)
 
 int close_cub(t_mlx *data)
 {
-	data->key->key_esc = 1;
+	(void)data;
+	exit(EXIT_SUCCESS);
 	return (0);
 }
