@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/02/13 15:14:59 by kparis           ###   ########.fr        #
+#    Updated: 2020/02/14 14:55:50 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC	=	main.c \
 		utils.c \
 		keypress.c \
 		parse_map.c \
-		#raycasting.c
+		raycasting.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

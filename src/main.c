@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/13 15:28:57 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/14 15:09:42 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ int		main(int ac, char **av)
 	t_map map;
 	t_key key;
 	t_img img;
+	t_player player;
 	t_mlx data;
 
 
 	data.map = &map;
 	data.key = &key;
 	data.img = &img;
+	data.player = &player;
 	data.key->key_up = 0;
 	data.key->key_down = 0;
 	data.key->key_left = 0;
 	data.key->key_right = 0;
+	data.key->key_turnleft = 0;
+	data.key->key_turnright = 0;
 	data.key->key_esc = 0;
 	//checker le nb d'arguments
 	if (ac < 2 || ac > 4)
@@ -72,7 +76,8 @@ int		main(int ac, char **av)
 		y++;
 	}
 	mlx_put_image_to_window(data.mlx, data.window, data.img->img, 0, 0);
-	//raycasting(&data);
+
+	raycasting(&data);
 	//loop
 	mlx_loop(data.mlx);
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/13 15:15:06 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/14 14:56:25 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 #define RES_X_MAX 1920
 #define	RES_Y_MAX 1080
 #define	ESC 53
-#define	UP 126
-#define	DOWN 125
-#define	LEFT 124
-#define	RIGHT 123
+#define	UP 13
+#define	DOWN 1
+#define	LEFT 0
+#define	RIGHT 2
+#define TURN_LEFT 123
+#define TURN_RIGHT 124
 
 typedef struct	s_img
 {
@@ -57,7 +59,13 @@ typedef	struct	s_key {
 	int			key_left;
 	int			key_right;
 	int			key_esc;
+	int			key_turnleft;
+	int			key_turnright;
 }				t_key;
+
+typedef	struct	s_player {
+	double		rot_speed;
+}				t_player;
 
 typedef	struct	s_mlx {
 	void		*mlx;
@@ -65,6 +73,7 @@ typedef	struct	s_mlx {
 	t_img		*img;
 	t_map		*map;
 	t_key		*key;
+	t_player	*player;
 }				t_mlx;
 
 void			parser_cub(char *line, t_map *map);
@@ -74,4 +83,4 @@ int				handle_keyrelease(int keycode, t_mlx *data);
 void			parse_map(t_map *map, int fd);
 void			get_img_adrr(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-//int				raycasting(t_mlx *data);
+int				raycasting(t_mlx *data);
