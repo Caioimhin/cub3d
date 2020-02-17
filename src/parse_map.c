@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/11 14:28:31 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/15 21:40:04 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,31 @@ void	wrong_map()
 	exit(EXIT_FAILURE);
 }
 
-int		normal_case(int j, int i, char *line, t_map *map)
+void	get_dir(char c, t_mlx *data)
+{
+	if (c == 'N')
+	{
+		data->player->player_dir_x = 1;
+		data->player->player_dir_y = 0;
+	}
+	else if (c == 'S')
+	{
+		data->player->player_dir_x = -1;
+		data->player->player_dir_y = 0;
+	}
+	else if (c == 'E')
+	{
+		data->player->player_dir_x = 0;
+		data->player->player_dir_y = 1;
+	}
+	else if (c == 'W')
+	{
+		data->player->player_dir_x = 0;
+		data->player->player_dir_y = -1;
+	}
+}
+
+int		normal_case(int j, int i, char *line, t_mlx *data)
 {
 	int x;
 
@@ -29,30 +53,34 @@ int		normal_case(int j, int i, char *line, t_map *map)
 			i += 1;
 		if ((line[i] == '0' || line[i] == '1' || line[i] == '2') && line[0] == '1')
 		{
-			map->map[j] = ft_realloc_int(map->map[j], x, ft_atoi(&line[i]));
+			data->map->map[j] = ft_realloc_int(data->map->map[j], x, ft_atoi(&line[i]));
 			i += 1;
 			x += 1;
 		}
 		else
 		{
 			if ((line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||
-				line[i] == 'W') && map->player == 0)
+				line[i] == 'W') && data->map->player == 0)
 			{
-				map->map[j] = ft_realloc_int(map->map[j], x, line[i]);
+				data->map->map[j] = ft_realloc_int(data->map->map[j], x, 0);
+				data->player->player_x = x;
+				data->player->player_y = j;
+				get_dir(line[i], data);
 				i += 1;
 				x += 1;
+				data->map->player = 1;
 				continue;
 			}
 			else
 				wrong_map();
 		}
 	}
-	(map->map[j][map->width_map - 1] != 1) ? wrong_map() : 0;
+	(data->map->map[j][data->map->width_map - 1] != 1) ? wrong_map() : 0;
 	j += 1;
 	return (j);
 }
 
-int		map_start(int j, int i, char *line, t_map *map)
+int		map_start(int j, int i, char *line, t_mlx *data)
 {
 	int x;
 
@@ -66,40 +94,40 @@ int		map_start(int j, int i, char *line, t_map *map)
 			ft_putendl("Error\nInvalid map");
 			exit(EXIT_FAILURE);
 		}
-		map->map[j] = ft_realloc_int(map->map[j], x, ft_atoi(&line[i]));
+		data->map->map[j] = ft_realloc_int(data->map->map[j], x, ft_atoi(&line[i]));
 		i += 1;
 		x += 1;
-		map->width_map = x;
+		data->map->width_map = x;
 	}
-	map->start = 1;
+	data->map->start = 1;
 	j += 1;
 	return (j);
 }
 
-void	parse_map(t_map *map, int fd)
+void	parse_map(t_mlx *data, int fd)
 {
 	char *line;
 	int i;
 	int j;
 
 	line = 0;
-	map->start = 0;
-	map->player = 0;
-	map->map = malloc(sizeof(int*) * 500);
+	data->map->start = 0;
+	data->map->player = 0;
+	data->map->map = malloc(sizeof(int*) * 500);
 	j = 0;
 	while(get_next_line(fd, &line))
 	{
-		parser_cub(line, map);
+		parser_cub(line,data->map);
 		i = 0;
 		if (line[0] == '1')
 		{
-			if (map->start == 0)
-				j = map_start(j, i, line, map);
+			if (data->map->start == 0)
+				j = map_start(j, i, line, data);
 			else
-				j = normal_case(j, i, line, map);
+				j = normal_case(j, i, line, data);
 		}
 	}
 	i = 0;
-	map->height_map = map_start(j, i, line, map);
+	data->map->height_map = map_start(j, i, line, data);
 
 }

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/14 15:59:05 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/17 17:30:10 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int		main(int ac, char **av)
 		}
 	}
 	fd = (ac == 2) ?  open(av[1], O_RDONLY) : open(av[2], O_RDONLY);
-	parse_map(data.map, fd);
+	parse_map(&data, fd);
 	close(fd);
+
 	//afficher la premiere image
 	if (!(data.mlx = mlx_init()))
 	{
