@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 14:22:44 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/10 16:04:47 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/19 12:40:14 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		get_rgb(int r, int g, int b)
 		map->floor = get_rgb(r, g, b);
 	else if (line[0] == 'C')
 		map->ceiling = get_rgb(r, g, b);
-	free(line);
+	//free(line);
  }
 
  static void	parse_path(char *line, t_map *map)
@@ -73,7 +73,7 @@ int		get_rgb(int r, int g, int b)
 		map->res_x = RES_X_MAX;
 	if (map->res_y > RES_Y_MAX)
 		map->res_y = RES_Y_MAX;
-	free(line);
+	//free(line);
  }
 
  void	parser_cub(char *line, t_map *map)

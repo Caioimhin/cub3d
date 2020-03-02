@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/15 21:40:04 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:45:15 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	get_dir(char c, t_mlx *data)
 {
 	if (c == 'N')
 	{
-		data->player->player_dir_x = 1;
+		data->player->player_dir_x = -1;
 		data->player->player_dir_y = 0;
 	}
 	else if (c == 'S')
 	{
-		data->player->player_dir_x = -1;
+		data->player->player_dir_x = 0;
 		data->player->player_dir_y = 0;
 	}
 	else if (c == 'E')
@@ -49,7 +49,7 @@ int		normal_case(int j, int i, char *line, t_mlx *data)
 	x = 0;
 	while (i < (int)ft_strlen(line))
 	{
-		while (!ft_isdigit(line[i]) && line[i] != 'N')
+		while (!ft_isdigit(line[i]) && (line[i] != 'N' && line[i] != 'S' && line[i] != 'W' && line[i] != 'E'))
 			i += 1;
 		if ((line[i] == '0' || line[i] == '1' || line[i] == '2') && line[0] == '1')
 		{

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/15 21:28:40 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/28 15:33:43 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,38 @@ typedef	struct	s_player {
 	int			player_dir_x;
 	int			player_dir_y;
 }				t_player;
+
+typedef	struct	s_ray
+{
+	int			x;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		camera_x;
+	double		raydir_x;
+	double		raydir_y;
+	int			w;
+	int			h;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			color;
+	double		movespeed;
+}				t_ray;
 
 typedef	struct	s_mlx {
 	void		*mlx;

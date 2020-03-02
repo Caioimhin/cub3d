@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/17 17:30:10 by kparis           ###   ########.fr       */
+/*   Updated: 2020/02/27 13:23:10 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int		main(int ac, char **av)
 	get_img_adrr(&data);
 	mlx_hook(data.window, 17, 0, close_cub, &data);
 	mlx_hook(data.window, 2, 1L<<0, handle_keypress, &data);
-	mlx_hook(data.window, 3, 1L<<1, handle_keypress, &data);
+	mlx_hook(data.window, 3, 1L<<1, handle_keyrelease, &data);
 	//loop
 	mlx_loop(data.mlx);
 	return (EXIT_SUCCESS);
