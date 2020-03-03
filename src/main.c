@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/03 17:33:06 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/03 17:59:17 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int		main(int ac, char **av)
 					ray.map_y += ray.step_y;
 					ray.side = 1;
 				}
-				if (map.map[ray.map_x][ray.map_y] > 0)
+				if (map.map[ray.map_y][ray.map_x] > 0)
 					ray.hit = 1;
 			}
 			//anti fisheye
