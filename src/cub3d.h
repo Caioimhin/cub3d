@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/28 15:33:43 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:47:59 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef	struct	s_mlx {
 	t_img		*img;
 	t_map		*map;
 	t_key		*key;
+	t_ray		*ray;
 	t_player	*player;
 }				t_mlx;
 

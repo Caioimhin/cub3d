@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 14:50:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/02 14:45:15 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/03 15:59:00 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	get_dir(char c, t_mlx *data)
 	}
 	else if (c == 'S')
 	{
-		data->player->player_dir_x = 0;
-		data->player->player_dir_y = 0;
+		data->player->player_dir_x = 1;
+		data->player->player_dir_y = -1;
 	}
 	else if (c == 'E')
 	{
-		data->player->player_dir_x = 0;
-		data->player->player_dir_y = 1;
+		data->player->player_dir_x = 1;
+		data->player->player_dir_y = 0;
 	}
 	else if (c == 'W')
 	{
@@ -129,5 +129,6 @@ void	parse_map(t_mlx *data, int fd)
 	}
 	i = 0;
 	data->map->height_map = map_start(j, i, line, data);
-
+	if (data->map->player != 1)
+		wrong_map();
 }
