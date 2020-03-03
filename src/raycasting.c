@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 10:30:45 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/02 17:06:20 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/03 18:28:56 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int raycasting(t_mlx *data)
 		ray.plane_x = 0;
 		ray.plane_y = 0.66;
 		clear(data);
-		move(&ray, data);
+		move(ray, data);
 		while (ray.x < ray.w)
 		{
 			ray.camera_x = 2 * ray.x / (double)ray.w - 1;
