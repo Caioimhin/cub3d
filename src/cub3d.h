@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/03 18:25:06 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:59:13 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 #include <string.h>
 #include <math.h>
 #include "../libft/libft.h"
-#define RES_X_MAX 1920
-#define	RES_Y_MAX 1080
+#include "mlx.h"
+
+#define RES_X_MAX 2560
+#define	RES_Y_MAX 1440
+#define RES_X_MIN 192
+#define	RES_Y_MIN 108
 #define	ESC 53
 #define	UP 13
 #define	DOWN 1
@@ -120,5 +124,3 @@ int				handle_keyrelease(int keycode, t_mlx *data);
 void			parse_map(t_mlx *data, int fd);
 void			get_img_adrr(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
-int				raycasting(t_mlx *data);
-void			move(t_ray *ray, t_mlx *data);

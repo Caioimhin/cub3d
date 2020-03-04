@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 14:22:44 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/19 12:40:14 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:56:38 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ int		get_rgb(int r, int g, int b)
 		map->res_x = RES_X_MAX;
 	if (map->res_y > RES_Y_MAX)
 		map->res_y = RES_Y_MAX;
+	if (map->res_x < RES_X_MIN)
+		map->res_x = RES_X_MIN;
+	if (map->res_y < RES_Y_MIN)
+		map->res_y = RES_Y_MIN;
 	//free(line);
  }
 

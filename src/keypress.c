@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 12:04:04 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/03 18:24:35 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:51:16 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	handle_keypress(int keycode, t_mlx *data)
 		data->key->key_turnright = 1;
 		data->player->rot_speed = -0.2;
 	}
-	move(data->ray, data);
+
+	mlx_string_put(data->mlx, data->window, 250, 250, 0x00FF0000, "YES");
 	return (0);
 }
 
@@ -49,6 +50,6 @@ int	handle_keyrelease(int keycode, t_mlx *data)
 		data->key->key_turnright = 0;
 		data->player->rot_speed = 0;
 	}
-	move(data->ray, data);
+	mlx_string_put(data->mlx, data->window, 250, 250, 0x0000FF, "NO");
 	return (0);
 }

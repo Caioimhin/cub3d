@@ -1,4 +1,4 @@
-R 1920 1080
+R 190000 10000
 NO ../resources/north
 SO ../resources/south
 WE ../resources/west

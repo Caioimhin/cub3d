@@ -6,12 +6,11 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 12:04:05 by kparis            #+#    #+#             */
-/*   Updated: 2020/02/14 16:00:26 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/04 17:48:29 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "mlx.h"
 
 void	get_img_adrr(t_mlx *data)
 {
