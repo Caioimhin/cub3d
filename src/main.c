@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 13:31:57 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/04 17:54:46 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/05 18:01:34 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void init(t_mlx *data)
 	data->ray->dir_y = data->player->player_dir_y;
 	data->ray->w = data->map->res_x;
 	data->ray->h = data->map->res_y;
-	data->ray->movespeed = 0.02;
+	data->ray->plane_x = 0;
+	data->ray->plane_y = 0.66;
+	data->ray->movespeed = 0.2;
 }
 
 int		retrieve_args(int ac, char **av, t_mlx *data)
@@ -78,10 +80,9 @@ int		main(int ac, char **av)
 	data.img = &img;
 	data.ray = &ray;
 	data.player = &player;
-	init(&data);
 	if (retrieve_args(ac, av, &data) == EXIT_FAILURE)
 		return(EXIT_FAILURE);
-
+	init(&data);
 	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
 	//hook des touches
 	data.img->img = mlx_new_image(data.mlx, map.res_x, map.res_y);
@@ -89,12 +90,12 @@ int		main(int ac, char **av)
 	//==================================RAY CASTING=============================
 
 
-
+	raycasting(data.ray, &data);
 	mlx_hook(data.window, 17, 0, close_cub, &data);
 	mlx_hook(data.window, 2, 1L<<0, handle_keypress, &data);
 	mlx_hook(data.window, 3, 1L<<1, handle_keyrelease, &data);
 
-	//mlx_loop_hook(data.window, loop, &data);
+	mlx_loop_hook(data.mlx, &loop, &data);
 	//==================================RAY CASTING=============================
 	mlx_loop(data.mlx);
 	return (EXIT_SUCCESS);

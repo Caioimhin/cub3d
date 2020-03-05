@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/04 17:59:13 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/05 17:12:30 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef	struct	s_player {
 	double		rot_speed;
 	int			player_x;
 	int			player_y;
-	int			player_dir_x;
-	int			player_dir_y;
+	double		player_dir_x;
+	double		player_dir_y;
 }				t_player;
 
 typedef	struct	s_ray
@@ -124,3 +124,5 @@ int				handle_keyrelease(int keycode, t_mlx *data);
 void			parse_map(t_mlx *data, int fd);
 void			get_img_adrr(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
+int				loop(t_mlx *data);
+void			raycasting(t_ray *ray, t_mlx *data);
