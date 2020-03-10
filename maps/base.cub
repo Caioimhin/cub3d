@@ -1,5 +1,5 @@
 R 1920 1080
-NO ../resources/north
+NO /Users/kevin/Projects/cub3d/resources /bookshelf.xpm
 SO ../resources/south
 WE ../resources/west
 EA ../resources/east
@@ -8,10 +8,15 @@ F 225,0,0
 C 0,0,255
 
 1 1 1 1 1 1 1 1 1 1
-1 1 0 1 0 0 0 0 0 1
-1 0 0 0 0 1 0 0 0 1
-1 0 1 0 0 0 1 0 0 1
+1 0 1 0 0 0 0 0 0 1
+1 0 1 0 0 0 0 0 0 1
+1 0 1 1 1 1 0 1 1 1
+1 0 0 0 0 0 0 0 0 1
+1 0 0 0 0 0 0 0 0 1
+1 0 1 1 0 1 1 0 0 1
 1 0 1 0 N 0 1 0 0 1
+1 0 1 0 0 0 1 0 0 1
+1 0 1 1 1 1 1 0 0 1
 1 0 0 0 0 0 0 0 0 1
 1 0 0 0 0 0 0 0 0 1
 1 1 1 1 1 1 1 1 1 1
