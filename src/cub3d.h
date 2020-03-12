@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/11 15:49:58 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/12 18:25:03 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ typedef struct	s_map
 	int		res_y;
 	int		floor;
 	int		ceilling;
+	char	**map;
 }				t_map;
 
 typedef struct	s_mlx
 {
-	t_map		*map;
+	t_map	*map;
 }				t_mlx;
 
-void	parse_cub_args(t_mlx *data);
-void	error_message(char *text);
+void			parse_cub_args(t_mlx *data);
+void			error_message(char *text);
+int				get_rgb(int r, int g, int b);
+void			parse_map(int fd, t_mlx *data);
 #endif

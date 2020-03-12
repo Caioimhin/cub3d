@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/03/11 16:22:09 by kparis           ###   ########.fr        #
+#    Updated: 2020/03/12 13:20:01 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,19 +14,21 @@ NAME	= cub3d
 
 # src / obj files
 SRC	=	main.c \
-		parse_cub_args.c
+		parse_cub_args.c \
+		parse_map.c \
+		utils.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -g
 
 # mlx library
 MLX		= ./miniLibX/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./miniLibX
-MLX_LNK	= -L ./miniLibX -l mlx -framework OpenGL -framework AppKit -g -fsanitize=address
+MLX_LNK	= -L ./miniLibX -l mlx -framework OpenGL -framework AppKit -g
 
 # ft library
 FT		= ./libft/
