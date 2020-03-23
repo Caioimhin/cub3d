@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:51:51 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/12 18:30:31 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/23 17:53:15 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,5 @@ void	parse_cub_args(t_mlx *data)
 		ft_free_str_tab(line_args, ft_str_tab_len(line_args));
 		free(line);
 	}
-	//parse_map(fd, data);
-	free(line);
-	close(fd);
+	parse_map(fd, data);
 }

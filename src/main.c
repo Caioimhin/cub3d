@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:30:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/18 23:39:21 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/23 17:13:15 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,5 @@ int		main(int ac, char **av)
 	data.map = &map;
 	data.map->save = check_args(ac, av, &data);
 	parse_cub_args(&data);
-	data.map->map = 0;
-	data.map->map = ft_realloc_char_tab(data.map->map, "test");
 	return (0);
 }
