@@ -6,20 +6,20 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:17:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/23 18:44:19 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/27 16:53:47 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int not_wall(char c)
+int		not_wall(char c)
 {
 	if (c == '0' || c == '2' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
 		return (1);
 	return (0);
 }
 
-void check_map_validity(t_mlx *data)
+void	check_map_validity(t_mlx *data)
 {
 	int x;
 	int y;
@@ -61,13 +61,18 @@ void check_map_validity(t_mlx *data)
 			if (!data->map->map[y + 1])
 				if (data->map->map[y][x] != '1' && data->map->map[y][x] != ' ')
 					error_message("wrong map");
+			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'S' || data->map->map[y][x] == 'W' || data->map->map[y][x] == 'E')
+			{
+				data->map->pos_x = x;
+				data->map->pos_y = y;
+			}
 			x++;
 		}
 		y++;
 	}
 }
 
-void parse_map(int fd, t_mlx *data)
+void	parse_map(int fd, t_mlx *data)
 {
 	char *line;
 	int map_start;

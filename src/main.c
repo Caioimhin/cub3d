@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:30:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/23 17:13:15 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/27 17:40:36 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,21 @@ int		check_args(int ac, char **av, t_mlx *data)
 int		main(int ac, char **av)
 {
 	t_map	map;
+	t_img	img;
 	t_mlx	data;
 
 	data.map = &map;
+	data.img = &img;
 	data.map->save = check_args(ac, av, &data);
 	parse_cub_args(&data);
+	//mlx init//
+	if (!(data.mlx = mlx_init()))
+		error_message("Can't init mlx");
+	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
+	data.img->img_ptr = mlx_new_image(data.mlx, map.res_x, map.res_y);
+	get_img_adrr(&data);
+	mlx_hook(data.window, 17, 0, close_mlx, &data);
+	mlx_loop_hook(data.mlx, raycasting, &data);
+	mlx_loop(data.mlx);
 	return (0);
 }
