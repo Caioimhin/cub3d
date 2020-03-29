@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/29 01:31:17 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/29 19:21:18 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct	s_ray
 {
 	double		dir_x;
 	double		dir_y;
+	double		pos_x;
+	double		pos_y;
 	double		plane_x;
 	double		plane_y;
 	double		camera_x;
