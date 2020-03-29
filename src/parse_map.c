@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:17:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/29 01:44:10 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/30 00:47:02 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	check_map_validity(t_mlx *data)
 			}
 			x++;
 		}
+		while ((int)ft_strlen(data->map->map[y]) < data->map->map_len)
+			data->map->map[y] = ft_realloc_char(data->map->map[y], '1');
+		ft_putendl(data->map->map[y]);
 		y++;
 	}
 }
@@ -76,11 +79,14 @@ void	parse_map(int fd, t_mlx *data)
 {
 	char *line;
 	int map_start;
+	data->map->map_len = 0;
 
 	map_start = 0;
 
+
 	while (get_next_line(fd, &line))
 	{
+		data->map->map_len = ((int)ft_strlen(line) > data->map->map_len) ? (int)ft_strlen(line) : data->map->map_len;
 		if (map_start == 0 && (line[0] == '1' || line[0] == ' '))
 			map_start = 1;
 		if (map_start == 1 && (line[0] == '1' || line[0] == ' '))

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/29 19:21:18 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/30 00:31:46 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_map
 	int		ceilling;
 	int		pos_x;
 	int		pos_y;
+	int		map_len;
 	char	**map;
 }				t_map;
 
