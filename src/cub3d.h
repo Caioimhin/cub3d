@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/27 17:39:51 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/29 01:31:17 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,38 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
+typedef struct	s_ray
+{
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		camera_x;
+	double		raydir_x;
+	double		raydir_y;
+	int			map_x;
+	int			map_y;
+	double		sidedist_x;
+	double		sidedist_y;
+	double		deltadist_x;
+	double		deltadist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+}				t_ray;
+
 typedef struct	s_mlx
 {
 	t_map	*map;
 	void	*mlx;
 	void	*window;
 	t_img	*img;
+	t_ray	*ray;
 
 }				t_mlx;
 
@@ -77,5 +103,5 @@ void			get_img_adrr(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 int				close_mlx(t_mlx *data);
 void			parse_map(int fd, t_mlx *data);
-int				raycasting(t_mlx *data);
+int				loop(t_mlx *data);
 #endif

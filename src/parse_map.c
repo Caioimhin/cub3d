@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:17:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/27 16:53:47 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/29 01:44:10 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,4 @@ void	parse_map(int fd, t_mlx *data)
 	free(line);
 	close(fd);
 	check_map_validity(data);
-
 }
