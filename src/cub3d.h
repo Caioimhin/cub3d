@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/30 00:31:46 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 16:36:39 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_map
 	int		pos_x;
 	int		pos_y;
 	int		map_len;
+	char	dir;
 	char	**map;
 }				t_map;
 
@@ -91,6 +92,13 @@ typedef struct	s_ray
 
 typedef struct	s_mlx
 {
+	int		k_up;
+	int		k_down;
+	int		k_left;
+	int		k_right;
+	int		k_esc;
+	int		k_turn_left;
+	int		k_turn_right;
 	t_map	*map;
 	void	*mlx;
 	void	*window;
@@ -106,5 +114,7 @@ void			get_img_adrr(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 int				close_mlx(t_mlx *data);
 void			parse_map(int fd, t_mlx *data);
+int				keypress(int keycode, t_mlx *data);
+int				keyrelease(int keycode, t_mlx *data);
 int				loop(t_mlx *data);
 #endif

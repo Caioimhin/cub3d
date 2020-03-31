@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:35:56 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 14:50:15 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 16:08:14 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,37 @@ void	raycasting(t_mlx *data, t_ray *ray)
 	x = 0;
 	// //a changer en fonction de la direction
 	//nord
-	ray->dir_x = 0;
-	ray->dir_y = -1;
-	ray->plane_x = 0.66;
-	ray->plane_y = 0;
-
-	// //sud
-	// ray->dir_x = 0;
-	// ray->dir_y = 1;
-	// ray->plane_x = -0.66;
-	// ray->plane_y = 0;
-
-	// //Ouest
-	// ray->dir_x = -1;
-	// ray->dir_y = 0;
-	// ray->plane_x = 0;
-	// ray->plane_y = -0.66;
-
-	// //Est
-	// ray->dir_x = 1;
-	// ray->dir_y = 0;
-	// ray->plane_x = 0;
-	// ray->plane_y = 0.66;
+	if (data->map->dir == 'N')
+	{
+		ray->dir_x = 0;
+		ray->dir_y = -1;
+		ray->plane_x = 0.66;
+		ray->plane_y = 0;
+	}
+	//sud
+	else if (data->map->dir == 'S')
+	{
+		ray->dir_x = 0;
+		ray->dir_y = 1;
+		ray->plane_x = -0.66;
+		ray->plane_y = 0;
+	}
+	//Ouest
+	else if (data->map->dir == 'W')
+	{
+		ray->dir_x = -1;
+		ray->dir_y = 0;
+		ray->plane_x = 0;
+		ray->plane_y = -0.66;
+	}
+	//Est
+	else if (data->map->dir == 'E')
+	{
+		ray->dir_x = 1;
+		ray->dir_y = 0;
+		ray->plane_x = 0;
+		ray->plane_y = 0.66;
+	}
 
 	ray->pos_x = data->map->pos_x + 0.5;
 	ray->pos_y = data->map->pos_y + 0.5;
