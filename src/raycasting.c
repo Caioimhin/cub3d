@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:35:56 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/30 00:50:34 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 14:50:15 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	raycasting(t_mlx *data, t_ray *ray)
 			ray->side = 1;
 			}
 			//Check if ray has ray->hit a wall
-			if(data->map->map[ray->map_y][ray->map_x] > 0)
+			if(data->map->map[ray->map_y][ray->map_x] != '0')
 				ray->hit = 1;
 		}
 		//Calculate distance projected on camera direction (Euclidean distance will give fisheye effect!)
