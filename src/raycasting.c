@@ -6,11 +6,60 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:35:56 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:43:44 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 17:02:38 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	move(t_mlx *data, t_ray *ray)
+{
+	double old_dir_x;
+	double old_plane_x;
+	double move_speed;
+	double rot_speed;
+
+	move_speed = 0.0;
+	rot_speed = 0.0;
+
+	if (data->k_up)
+	{
+		if(data->map->map[(int)(ray->pos_x + ray->dir_x * move_speed)][(int)(ray->pos_y)] == '0')
+			ray->pos_x += ray->dir_x * move_speed;
+		if(data->map->map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y * move_speed)] == '0')
+			ray->pos_y += ray->dir_y * move_speed;
+	}
+	//move backwards if no wall behind you
+	if (data->k_down)
+	{
+		if(data->map->map[(int)(ray->pos_x - ray->dir_x * move_speed)][(int)(ray->pos_y)] == '0')
+			ray->pos_x -= ray->dir_x * move_speed;
+		if(data->map->map[(int)(ray->pos_x)][(int)(ray->pos_y - ray->dir_y * move_speed)] == '0')
+			ray->pos_y -= ray->dir_y * move_speed;
+	}
+	//rotate to the right
+	if (data->k_turn_right)
+	{
+		//both camera direction and camera plane must be rotated
+		old_dir_x = ray->dir_x;
+		ray->dir_x = ray->dir_x * cos(-rot_speed) - ray->dir_y * sin(-rot_speed);
+		ray->dir_y = old_dir_x * sin(-rot_speed) + ray->dir_y * cos(-rot_speed);
+		old_plane_x = ray->plane_x;
+		ray->plane_x = ray->plane_x * cos(-rot_speed) - ray->plane_y * sin(-rot_speed);
+		ray->plane_y = old_plane_x * sin(-rot_speed) + ray->plane_y * cos(-rot_speed);
+	}
+	//rotate to the left
+	if (data->k_turn_left)
+	{
+		//both camera direction and camera plane must be rotated
+		old_dir_x = ray->dir_x;
+		ray->dir_x = ray->dir_x * cos(rot_speed) - ray->dir_y * sin(rot_speed);
+		ray->dir_y = old_dir_x * sin(rot_speed) + ray->dir_y * cos(rot_speed);
+		old_plane_x = ray->plane_x;
+		ray->plane_x = ray->plane_x * cos(rot_speed) - ray->plane_y * sin(rot_speed);
+		ray->plane_y = old_plane_x * sin(rot_speed) + ray->plane_y * cos(rot_speed);
+	}
+}
 
 void	raycasting(t_mlx *data, t_ray *ray)
 {
@@ -147,7 +196,10 @@ int		loop(t_mlx *data)
 {
 	if (data->k_down || data->k_up || data->k_left ||
 		data->k_right || data->k_turn_left || data->k_turn_right)
+	{
+		move(data, data->ray);
 		raycasting(data, data->ray);
+	}
 
 	return (EXIT_SUCCESS);
 }

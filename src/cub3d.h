@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:36:39 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 16:45:57 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int				close_mlx(t_mlx *data);
 void			parse_map(int fd, t_mlx *data);
 int				keypress(int keycode, t_mlx *data);
 int				keyrelease(int keycode, t_mlx *data);
+void			raycasting(t_mlx *data, t_ray *ray);
 int				loop(t_mlx *data);
 #endif

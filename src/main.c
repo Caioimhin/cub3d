@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:30:10 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:19:45 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 16:46:29 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		main(int ac, char **av)
 	data.window = mlx_new_window(data.mlx, map.res_x, map.res_y, "Cub3d");
 	data.img->img_ptr = mlx_new_image(data.mlx, map.res_x, map.res_y);
 	get_img_adrr(&data);
+	raycasting(&data, data.ray);
 	mlx_hook(data.window, 17, 0, close_mlx, &data);
 	mlx_hook(data.window, 2, 0, keypress, &data);
 	mlx_hook(data.window, 3, 0, keyrelease, &data);
