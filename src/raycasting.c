@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:35:56 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:08:14 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 16:43:44 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,9 +145,9 @@ void	raycasting(t_mlx *data, t_ray *ray)
 
 int		loop(t_mlx *data)
 {
-	//button press ?
-		//raycasting
-	raycasting(data, data->ray);
+	if (data->k_down || data->k_up || data->k_left ||
+		data->k_right || data->k_turn_left || data->k_turn_right)
+		raycasting(data, data->ray);
 
 	return (EXIT_SUCCESS);
 }
