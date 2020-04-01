@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:45:57 by kparis           ###   ########.fr       */
+/*   Updated: 2020/03/31 17:40:15 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct	s_img
 
 typedef struct	s_ray
 {
+	int			init;
 	double		dir_x;
 	double		dir_y;
 	double		pos_x;

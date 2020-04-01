@@ -6,11 +6,29 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 17:35:56 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 17:02:38 by kparis           ###   ########.fr       */
+/*   Updated: 2020/04/02 00:32:46 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	clear(t_mlx *data)
+{
+	int x;
+	int y;
+
+	y = 0;
+	while (y < data->map->res_y)
+	{
+		x = 0;
+		while (x < data->map->res_x)
+		{
+			ft_mlx_pixel_put(data->img, x, y, 0x000000);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	move(t_mlx *data, t_ray *ray)
 {
@@ -19,26 +37,47 @@ void	move(t_mlx *data, t_ray *ray)
 	double move_speed;
 	double rot_speed;
 
-	move_speed = 0.0;
-	rot_speed = 0.0;
+	move_speed = 0.2;
+	rot_speed = 0.2;
 
 	if (data->k_up)
 	{
-		if(data->map->map[(int)(ray->pos_x + ray->dir_x * move_speed)][(int)(ray->pos_y)] == '0')
+		if(data->map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_x * move_speed)] == '0')
 			ray->pos_x += ray->dir_x * move_speed;
-		if(data->map->map[(int)(ray->pos_x)][(int)(ray->pos_y + ray->dir_y * move_speed)] == '0')
+		if(data->map->map[(int)(ray->pos_y - ray->dir_y * move_speed)][(int)ray->pos_x] == '0')
 			ray->pos_y += ray->dir_y * move_speed;
 	}
 	//move backwards if no wall behind you
 	if (data->k_down)
 	{
-		if(data->map->map[(int)(ray->pos_x - ray->dir_x * move_speed)][(int)(ray->pos_y)] == '0')
+		if(data->map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->dir_x * move_speed)] == '0')
 			ray->pos_x -= ray->dir_x * move_speed;
-		if(data->map->map[(int)(ray->pos_x)][(int)(ray->pos_y - ray->dir_y * move_speed)] == '0')
+		if(data->map->map[(int)(ray->pos_y - ray->dir_y * move_speed)][(int)ray->pos_x] == '0')
 			ray->pos_y -= ray->dir_y * move_speed;
 	}
+	if (data->k_right)
+	{
+		if (data->map->map[(int)ray->pos_y][(int)(ray->pos_x + ray->plane_x  * move_speed)] == '0')
+			ray->pos_x += ray->plane_x * move_speed;
+		// si le prochain tile sur Y est libre on avance sur Y
+		if (data->map->map[(int)(ray->pos_y + ray->plane_y * move_speed)][(int)ray->pos_x] == '0') {
+			ray->pos_y += ray->plane_y * move_speed;
+		}
+	}
+	// Latéral gauche
+	if (data->k_left)
+	{
+		// si le prochain tile sur X est libre on recule sur X
+		if (data->map->map[(int)ray->pos_y][(int)(ray->pos_x - ray->plane_x  * move_speed)] == '0') {
+			ray->pos_x -= ray->plane_x * move_speed;
+		}
+		// si le prochain tile sur Y est libre on recule sur Y
+		if (data->map->map[(int)(ray->pos_y - ray->plane_y * move_speed)][(int)ray->pos_x] == '0') {
+			ray->pos_y -= ray->plane_y * move_speed;
+		}
+	}
 	//rotate to the right
-	if (data->k_turn_right)
+	if (data->k_turn_left)
 	{
 		//both camera direction and camera plane must be rotated
 		old_dir_x = ray->dir_x;
@@ -49,7 +88,7 @@ void	move(t_mlx *data, t_ray *ray)
 		ray->plane_y = old_plane_x * sin(-rot_speed) + ray->plane_y * cos(-rot_speed);
 	}
 	//rotate to the left
-	if (data->k_turn_left)
+	if (data->k_turn_right)
 	{
 		//both camera direction and camera plane must be rotated
 		old_dir_x = ray->dir_x;
@@ -66,42 +105,45 @@ void	raycasting(t_mlx *data, t_ray *ray)
 	int x;
 
 	x = 0;
-	// //a changer en fonction de la direction
-	//nord
-	if (data->map->dir == 'N')
+	move(data, ray);
+	if (!ray->init)
 	{
-		ray->dir_x = 0;
-		ray->dir_y = -1;
-		ray->plane_x = 0.66;
-		ray->plane_y = 0;
-	}
-	//sud
-	else if (data->map->dir == 'S')
-	{
-		ray->dir_x = 0;
-		ray->dir_y = 1;
-		ray->plane_x = -0.66;
-		ray->plane_y = 0;
-	}
-	//Ouest
-	else if (data->map->dir == 'W')
-	{
-		ray->dir_x = -1;
-		ray->dir_y = 0;
-		ray->plane_x = 0;
-		ray->plane_y = -0.66;
-	}
-	//Est
-	else if (data->map->dir == 'E')
-	{
-		ray->dir_x = 1;
-		ray->dir_y = 0;
-		ray->plane_x = 0;
-		ray->plane_y = 0.66;
-	}
+		ray->init = 1;
+		if (data->map->dir == 'N')
+		{
+			ray->dir_x = 0;
+			ray->dir_y = -1;
+			ray->plane_x = 0.66;
+			ray->plane_y = 0;
+		}
+		//sud
+		else if (data->map->dir == 'S')
+		{
+			ray->dir_x = 0;
+			ray->dir_y = 1;
+			ray->plane_x = -0.66;
+			ray->plane_y = 0;
+		}
+		//Ouest
+		else if (data->map->dir == 'W')
+		{
+			ray->dir_x = -1;
+			ray->dir_y = 0;
+			ray->plane_x = 0;
+			ray->plane_y = -0.66;
+		}
+		//Est
+		else if (data->map->dir == 'E')
+		{
+			ray->dir_x = 1;
+			ray->dir_y = 0;
+			ray->plane_x = 0;
+			ray->plane_y = 0.66;
+		}
 
-	ray->pos_x = data->map->pos_x + 0.5;
-	ray->pos_y = data->map->pos_y + 0.5;
+		ray->pos_x = data->map->pos_x + 0.5;
+		ray->pos_y = data->map->pos_y + 0.5;
+	}
 
 	while (x < data->map->res_x)
 	{
@@ -197,9 +239,8 @@ int		loop(t_mlx *data)
 	if (data->k_down || data->k_up || data->k_left ||
 		data->k_right || data->k_turn_left || data->k_turn_right)
 	{
-		move(data, data->ray);
+		clear(data);
 		raycasting(data, data->ray);
 	}
-
 	return (EXIT_SUCCESS);
 }

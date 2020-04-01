@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:17:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 16:05:26 by kparis           ###   ########.fr       */
+/*   Updated: 2020/04/02 00:07:55 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	check_map_validity(t_mlx *data)
 				data->map->dir = data->map->map[y][x];
 				data->map->pos_x = x;
 				data->map->pos_y = y;
+				data->map->map[y][x] = '0';
 			}
 			x++;
 		}
