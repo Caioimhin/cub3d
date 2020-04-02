@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 13:17:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/04/02 00:07:55 by kparis           ###   ########.fr       */
+/*   Updated: 2020/04/02 20:24:06 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	check_map_validity(t_mlx *data)
 			if (data->map->map[y][x] == 'N' || data->map->map[y][x] == 'S' || data->map->map[y][x] == 'W' || data->map->map[y][x] == 'E')
 			{
 				data->map->dir = data->map->map[y][x];
-				data->map->pos_x = x;
-				data->map->pos_y = y;
+				data->ray->pos_x = (double)x + 0.5;
+				data->ray->pos_y = (double)y + 0.5;
 				data->map->map[y][x] = '0';
 			}
 			x++;

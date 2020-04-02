@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/03/31 17:40:15 by kparis           ###   ########.fr       */
+/*   Updated: 2020/04/03 01:29:46 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ typedef struct	s_map
 	int		res_y;
 	int		floor;
 	int		ceilling;
-	int		pos_x;
-	int		pos_y;
 	int		map_len;
 	char	dir;
 	char	**map;
@@ -89,6 +87,8 @@ typedef struct	s_ray
 	int			line_height;
 	int			draw_start;
 	int			draw_end;
+	double		move_speed;
+	double		rot_speed;
 }				t_ray;
 
 typedef struct	s_mlx
