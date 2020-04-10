@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 12:11:27 by kparis            #+#    #+#             */
-/*   Updated: 2020/04/03 01:29:46 by kparis           ###   ########.fr       */
+/*   Updated: 2020/04/10 04:45:32 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ typedef struct	s_map
 typedef struct	s_img
 {
 	void		*img_ptr;
-	void		*img_cpy;
 	void		*adress;
 	int			bits_per_pxl;
 	int			line_length;
 	int			endian;
+	int			*colors;
+	int			x;
+	int			y;
 }				t_img;
 
 typedef struct	s_ray
@@ -112,11 +114,16 @@ void			parse_cub_args(t_mlx *data);
 void			error_message(char *text);
 int				get_rgb(int r, int g, int b);
 void			get_img_adrr(t_mlx *data);
+void			create_texture_img(t_mlx *data, char *path, t_img *text);
+void			clear(t_mlx *data);
 void			ft_mlx_pixel_put(t_img *img, int x, int y, int color);
 int				close_mlx(t_mlx *data);
 void			parse_map(int fd, t_mlx *data);
 int				keypress(int keycode, t_mlx *data);
 int				keyrelease(int keycode, t_mlx *data);
 void			raycasting(t_mlx *data, t_ray *ray);
+void			init_ray(t_mlx *data, t_ray *ray);
+void			dda(t_mlx *data, t_ray *ray);
+void			move(t_mlx *data, t_ray *ray);
 int				loop(t_mlx *data);
 #endif
