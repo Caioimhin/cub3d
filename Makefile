@@ -5,69 +5,112 @@
 #                                                     +:+ +:+         +:+      #
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/02/22 23:12:10 by kparis            #+#    #+#              #
-#    Updated: 2020/02/18 17:41:51 by kparis           ###   ########.fr        #
+#    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
+#    Updated: 2020/05/15 00:11:54 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= cub3d
+NAME			= cub3d
 
-# src / obj files
-SRC	=	main.c \
-		parser_cub.c \
-		utils.c \
-		keypress.c \
-		parse_map.c \
-		raycasting.c
+SRCS1			=	cub3d.c \
+					colors.c \
+					event.c \
+					exit.c \
+					frame.c \
+					img.c\
+					init.c\
+					map.c\
+					move.c\
+					parsing.c\
+					resolution.c\
+					textures.c\
+					print.c\
+					bmp.c\
+					sprites.c
 
-OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+SRCS			= $(addprefix $(SRCS_DIR), $(SRCS1))
+OBJS			= $(addprefix $(OBJS_DIR), $(SRCS1:.c=.o))
 
-# compiler
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g -fsanitize=address
+SRCS_DIR		= ./srcs/
+OBJS_DIR		= ./objs/
+INCLUDES_DIR		= ./includes/
+LIBFT_DIR		= ./libft/
 
-# mlx library
-MLX		= ./miniLibX/
-MLX_LIB	= $(addprefix $(MLX),mlx.a)
-MLX_INC	= -I ./miniLibX
-MLX_LNK	= -L ./miniLibX -l mlx -framework OpenGL -framework AppKit -g -fsanitize=address
+LIBFT			= $(LIBFT_DIR)libft.a
+MINILIBX		= $(MLX_DIR)libmlx.a
+HEADER			= $(INCLUDES_DIR)cub3d.h
 
-# ft library
-FT		= ./libft/
-FT_LIB	= $(addprefix $(FT),libft.a)
-FT_INC	= -I ./libft
-FT_LNK	= -L ./libft -l ft
+CFLAGS			= -Wall -Wextra -Werror -O2 -g
+CC				= gcc
 
-# directories
-SRCDIR	= ./src/
-INCDIR	= ./includes/
-OBJDIR	= ./obj/
+MLX_DIR		= ./mlx/
+INCLUDES	= $(addprefix -I, $(INCLUDES_DIR) $(LIBFT_DIR) $(LIBVECT_DIR) $(MLX_DIR))
+FRAMEWORK	= -framework OpenGL -framework Appkit
 
-all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
 
-obj:
-	mkdir -p $(OBJDIR)
+##################
+##    COLORS    ##
+##################
 
-$(OBJDIR)%.o:$(SRCDIR)%.c
-	@$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+_BLACK		= "\033[30m"
+_RED		= "\033[31m"
+_GREEN		= "\033[32m"
+_YELLOW		= "\033[33m"
+_BLUE		= "\033[34m"
+_VIOLET		= "\033[35m"
+_CYAN		= "\033[36m"
+_WHITE		= "\033[37m"
+_END		= "\033[0m"
+_CLEAR		= "\033[2K"
+_HIDE_CURS	= "\033[?25l"
+_SHOW_CURS	= "\033[?25h"
+_UP		= "\033[A"
+_CUT		= "\033[k"
 
-$(FT_LIB):
-	@make -C $(FT)
+##################
+##   TARGETS    ##
+##################
 
-$(MLX_LIB):
-	@make -C $(MLX)
-	@echo "\033[92mMlx Done\033[0m"
+.PHONY: all launch clean fclean re title
+.SILENT:
 
-$(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
+all: launch
+
+launch:
+	$(MAKE) $(LIBFT)
+	$(MAKE) $(MINILIBX)
+	echo $(_CLEAR)$(_YELLOW)"building - "$(_GREEN)$(NAME)$(_END)
+	$(MAKE) $(NAME)
+	echo $(_GREEN)"Done."$(_END)$(_SHOW_CURS)
+
+$(OBJS_DIR):
+	mkdir $@
+
+$(LIBFT): FORCE
+	$(MAKE) -sC libft
+
+$(MINILIBX): FORCE
+	$(MAKE) -sC $(MLX_DIR) 2>/dev/null
+
+FORCE:
+
+$(NAME): $(OBJS_DIR) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FRAMEWORK) $(MINILIBX) -o $(NAME)
+
+$(OBJS): $(OBJS_DIR)%.o: $(SRCS_DIR)%.c $(HEADER)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	printf $<
+	echo
 
 clean:
-	@rm -rf $(OBJDIR)
-	@make -C $(FT) clean
-	@make -C $(MLX) clean
+	$(MAKE) -sC libft clean
+	$(MAKE) -sC $(MLX_DIR) clean
+	$(RM) -r $(OBJS_DIR)
 
 fclean: clean
-	@rm -rf $(NAME)
-	@make -C $(FT) fclean
+	$(MAKE) -sC libft fclean
+	$(RM) $(NAME)
 
-re: fclean all
+re:
+	$(MAKE) -s fclean
+	$(MAKE) -s
