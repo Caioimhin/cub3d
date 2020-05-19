@@ -6,14 +6,13 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:06 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/15 00:18:32 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:10:32 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-	void
-check_args_errors(t_data *data, int argc, char **argv)
+void	check_args_errors(t_data *data, int argc, char **argv)
 {
 	if (argc == 1 || argc > 3)
 		close_program(data, "Invalid number of arguments\n", "");
@@ -25,22 +24,21 @@ check_args_errors(t_data *data, int argc, char **argv)
 		data->save = 0;
 	if (argc == 3)
 	{
-		if(ft_memcmp(&argv[2][ft_strlen(argv[2]) - 4], ".cub", 4))
+		if (ft_memcmp(&argv[2][ft_strlen(argv[2]) - 4], ".cub", 4))
 			close_program(data, "File extension is not .cub\n", "");
 		if ((data->maps.fd = open(argv[2], O_RDONLY)) == -1)
 			close_program(data, "Couldn't open .cub file\n", "");
 	}
 	else
 	{
-		if(ft_memcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub", 4))
+		if (ft_memcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub", 4))
 			close_program(data, "File extension is not .cub\n", "");
 		if ((data->maps.fd = open(argv[1], O_RDONLY)) == -1)
 			close_program(data, "Couldn't open .cub file\n", "");
 	}
 }
 
-	int
-main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_data data;
 

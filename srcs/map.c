@@ -6,15 +6,13 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:59 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:51:14 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:41:23 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
-	int
-is_map(t_data *data, t_maps *maps, int x, int y)
+int		is_map(t_data *data, t_maps *maps, int x, int y)
 {
 	char c;
 
@@ -42,8 +40,7 @@ is_map(t_data *data, t_maps *maps, int x, int y)
 	return (0);
 }
 
-	int
-check_map_errors(t_data *data, t_maps *maps)
+int		check_map_errors(t_data *data, t_maps *maps)
 {
 	int x;
 	int y;
@@ -67,11 +64,10 @@ check_map_errors(t_data *data, t_maps *maps)
 	}
 	if (maps->player_orientation == (char)NULL)
 		close_program(data, "No map or no player set :'(", "");
-	return(0);
+	return (0);
 }
 
-	void
-check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
+void	check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 {
 	int i;
 	int j;
@@ -98,8 +94,7 @@ check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 ** NB : map_size.y has not yet been incremented in fill_tmp hence +1 each time
 */
 
-	char
-**get_tmp_map(t_data *data, t_maps *maps, char **tmp, char *line)
+char	**get_tmp_map(t_data *data, t_maps *maps, char **tmp, char *line)
 {
 	int i;
 
@@ -111,8 +106,8 @@ check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 		if (!(tmp[i] = malloc(sizeof(char*) * (maps->map_size.x + 1))))
 			close_program(data, "Failed allocating memory for tmp map\n", "");
 		if (i != (maps->map_size.y))
-			tmp[i] = ft_strcharcpy
-				(tmp[i], maps->map[i], maps->map_size.x, ' ');
+			tmp[i] =
+				ft_strcharcpy(tmp[i], maps->map[i], maps->map_size.x, ' ');
 		else
 			tmp[i] = ft_strcharcpy(tmp[i], line, maps->map_size.x, ' ');
 		i++;
@@ -120,8 +115,7 @@ check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 	return (tmp);
 }
 
-	void
-get_map(t_data *data, char *line, int i, t_maps *maps)
+void	get_map(t_data *data, char *line, int i, t_maps *maps)
 {
 	char	**tmp;
 

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:52 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:54:44 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:39:03 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	init_settings(t_maps *maps)
 
 void	init_dir_and_plane(t_maps *maps, t_ray *ray)
 {
-		ray->dir.x = 0;
-		ray->dir.y = -1;
-		ray->plane.x = 0.7;
-		ray->plane.y = 0;
+	ray->dir.x = 0;
+	ray->dir.y = -1;
+	ray->plane.x = 0.7;
+	ray->plane.y = 0;
 	if (maps->player_orientation == 'E')
 	{
 		ray->dir.x = 1;
@@ -73,11 +73,11 @@ void	init_sprites(t_data *data, t_maps *maps, t_ray *ray)
 		close_program(data, "Couldn't allocate mem for spr_y", "");
 	if (!(maps->spr_text = malloc(sizeof(char *) * (maps->spr_count))))
 		close_program(data, "Couldn't allocate mem for spr_text", "");
-	if(!(ray->z_buffer = malloc(sizeof(double *) * maps->win_size.x)))
+	if (!(ray->z_buffer = malloc(sizeof(double *) * maps->win_size.x)))
 		close_program(data, "Failed allocating z_buffer", "");
-	if(!(ray->spr_order = malloc(sizeof(int *) * maps->spr_count)))
+	if (!(ray->spr_order = malloc(sizeof(int *) * maps->spr_count)))
 		close_program(data, "Failed allocating spr_order", "");
-	if(!(ray->spr_dist = malloc(sizeof(double *) * maps->spr_count)))
+	if (!(ray->spr_dist = malloc(sizeof(double *) * maps->spr_count)))
 		close_program(data, "Failed allocating spr_dist", "");
 }
 

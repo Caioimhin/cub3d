@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray.c                                            :+:      :+:    :+:   */
+/*   frame.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:50:57 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:36:38 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-	int
-render_next_frame(t_data *data)
+int		render_next_frame(t_data *data)
 {
 	int		x;
 	t_img	*text_img;
@@ -22,7 +21,7 @@ render_next_frame(t_data *data)
 	while (x < data->maps.win_size.x)
 	{
 		set_ray(data, &data->ray, x);
-		perform_DDA(data, &data->ray);
+		perform_dda(data, &data->ray);
 		data->ray.z_buffer[x] = data->ray.perp_wall_dist;
 		set_drawing_limits(data, &data->ray);
 		text_img = get_texture_img(&data->ray);
@@ -37,29 +36,28 @@ render_next_frame(t_data *data)
 	return (0);
 }
 
-	void
-draw_column(t_data *data, t_ray *F, t_img *text_img, int x)
+void	draw_column(t_data *data, t_ray *ray, t_img *text_img, int x)
 {
 	t_int	pos;
 	double	step;
-	double	texPos;
+	double	tex_pos;
 
 	pos.x = x;
 	pos.y = 0;
-	while (pos.y < F->draw_start)
+	while (pos.y < ray->draw_start)
 	{
 		put_pixel(&data->img, pos, data->maps.ceiling_color);
 		pos.y++;
 	}
-	step = 1.0 * text_img->size.y / F->line_height;
-	texPos = (F->draw_start - data->maps.win_size.y / 2 +
-		F->line_height / 2) * step;
-	while (pos.y < F->draw_end)
+	step = 1.0 * text_img->size.y / ray->line_height;
+	tex_pos = (ray->draw_start - data->maps.win_size.y / 2 +
+		ray->line_height / 2) * step;
+	while (pos.y < ray->draw_end)
 	{
-		F->text.y = (int)texPos & (text_img->size.y - 1);
-		texPos += step;
+		ray->text.y = (int)tex_pos & (text_img->size.y - 1);
+		tex_pos += step;
 		put_pixel(&data->img, pos, text_img->colors
-			[(text_img->size.y * F->text.y + F->text.x)]);
+			[(text_img->size.y * ray->text.y + ray->text.x)]);
 		pos.y++;
 	}
 	pos.y--;
@@ -67,83 +65,73 @@ draw_column(t_data *data, t_ray *F, t_img *text_img, int x)
 		put_pixel(&data->img, pos, data->maps.floor_color);
 }
 
-	void
-set_drawing_limits(t_data *data, t_ray *F)
+void	set_drawing_limits(t_data *data, t_ray *ray)
 {
-	F->line_height =
-		abs((int)(data->maps.win_size.y / (F->perp_wall_dist)));
-	F->draw_start = -F->line_height / 2 + data->maps.win_size.y / 2;
-	if(F->draw_start < 0)
-		F->draw_start = 0;
-	F->draw_end = F->line_height / 2 + data->maps.win_size.y / 2;
-	if(F->draw_end >= data->maps.win_size.y)
-		F->draw_end = data->maps.win_size.y;
-	if (F->side == 0)
-		F->wall_x = F->pos.y + F->perp_wall_dist * F->ray.y;
+	ray->line_height =
+		abs((int)(data->maps.win_size.y / (ray->perp_wall_dist)));
+	ray->draw_start = -ray->line_height / 2 + data->maps.win_size.y / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + data->maps.win_size.y / 2;
+	if (ray->draw_end >= data->maps.win_size.y)
+		ray->draw_end = data->maps.win_size.y;
+	if (ray->side == 0)
+		ray->wall_x = ray->pos.y + ray->perp_wall_dist * ray->ray.y;
 	else
-		F->wall_x = F->pos.x + F->perp_wall_dist * F->ray.x;
-	F->wall_x -= floor((F->wall_x));
+		ray->wall_x = ray->pos.x + ray->perp_wall_dist * ray->ray.x;
+	ray->wall_x -= floor((ray->wall_x));
 }
 
-/*
-** DDA = Digital Differential Analyser
-*/
-
-	void
-perform_DDA(t_data *data, t_ray *F)
+void	perform_dda(t_data *data, t_ray *ray)
 {
 	int	hit;
 
 	hit = 0;
 	while (hit == 0)
 	{
-		if(F->side_dist.x < F->side_dist.y)
+		if (ray->side_dist.x < ray->side_dist.y)
 		{
-			F->side_dist.x += F->delta_dist.x;
-			F->map.x += F->step.x;
-			F->side = 0;
+			ray->side_dist.x += ray->delta_dist.x;
+			ray->map.x += ray->step.x;
+			ray->side = 0;
 		}
 		else
 		{
-			F->side_dist.y += F->delta_dist.y;
-			F->map.y += F->step.y;
-			F->side = 1;
+			ray->side_dist.y += ray->delta_dist.y;
+			ray->map.y += ray->step.y;
+			ray->side = 1;
 		}
-		if(data->maps.map[(int)F->map.y][(int)F->map.x] == '1')
+		if (data->maps.map[(int)ray->map.y][(int)ray->map.x] == '1')
 			hit = 1;
 	}
-	if(F->side == 0)
-		F->perp_wall_dist = (F->map.x - F->pos.x + (1 - F->step.x)/2)/ F->ray.x;
-	else
-		F->perp_wall_dist = (F->map.y - F->pos.y + (1 - F->step.y)/2)/ F->ray.y;
+	ray->perp_wall_dist = (ray->side == 0) ?
+		(ray->map.x - ray->pos.x + (1 - ray->step.x) / 2) / ray->ray.x :
+		(ray->map.y - ray->pos.y + (1 - ray->step.y) / 2) / ray->ray.y;
 }
 
-	void
-set_ray(t_data *data, t_ray *F, int x)
+void	set_ray(t_data *data, t_ray *ray, int x)
 {
-	F->map.x = (int)F->pos.x;
-	F->map.y = (int)F->pos.y;
-	F->camera_x = 2 * x /(double)data->maps.win_size.x - 1;
-	F->ray.x = F->dir.x + F->plane.x * F->camera_x;
-	F->ray.y = F->dir.y + F->plane.y * F->camera_x;
-	F->delta_dist.x =
-		(F->ray.y == 0) ? 0 : ((F->ray.x == 0) ? 1 : fabs(1 / F->ray.x));
-	F->delta_dist.y =
-		(F->ray.x == 0) ? 0 : ((F->ray.y == 0) ? 1 : fabs(1 / F->ray.y));
-	if (F->ray.x < 0)
-		F->step.x = -1;
+	ray->map.x = (int)ray->pos.x;
+	ray->map.y = (int)ray->pos.y;
+	ray->camera_x = 2 * x / (double)data->maps.win_size.x - 1;
+	ray->ray.x = ray->dir.x + ray->plane.x * ray->camera_x;
+	ray->ray.y = ray->dir.y + ray->plane.y * ray->camera_x;
+	if (ray->ray.y == 0)
+		ray->delta_dist.x = 0;
 	else
-		F->step.x = 1;
-	if (F->ray.y < 0)
-		F->step.y = -1;
+		ray->delta_dist.x = (ray->ray.x == 0) ? 1 : fabs(1 / ray->ray.x);
+	if (ray->ray.x == 0)
+		ray->delta_dist.y = 0;
 	else
-		F->step.y = 1;
-	if (F->ray.x < 0)
-		F->side_dist.x = (F->pos.x - F->map.x) * F->delta_dist.x;
+		ray->delta_dist.y = (ray->ray.y == 0) ? 1 : fabs(1 / ray->ray.y);
+	ray->step.x = (ray->ray.x < 0) ? -1 : 1;
+	ray->step.y = (ray->ray.y < 0) ? -1 : 1;
+	if (ray->ray.x < 0)
+		ray->side_dist.x = (ray->pos.x - ray->map.x) * ray->delta_dist.x;
 	else
-		F->side_dist.x = (F->map.x + 1.0 - F->pos.x) * F->delta_dist.x;
-	if (F->ray.y < 0)
-		F->side_dist.y = (F->pos.y - F->map.y) * F->delta_dist.y;
+		ray->side_dist.x = (ray->map.x + 1.0 - ray->pos.x) * ray->delta_dist.x;
+	if (ray->ray.y < 0)
+		ray->side_dist.y = (ray->pos.y - ray->map.y) * ray->delta_dist.y;
 	else
-		F->side_dist.y = (F->map.y + 1.0 - F->pos.y) * F->delta_dist.y;
+		ray->side_dist.y = (ray->map.y + 1.0 - ray->pos.y) * ray->delta_dist.y;
 }

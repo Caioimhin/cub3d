@@ -6,14 +6,13 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:58:17 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:54:28 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:45:02 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-	int
-settings_ok(t_data *data, t_maps *maps, char *line)
+int		settings_ok(t_data *data, t_maps *maps, char *line)
 {
 	if ((!ft_memcmp(line, "R ", 2) && maps->win_size.y) ||
 		(!ft_memcmp(line, "NO ", 3) && maps->NO_path) ||
@@ -23,7 +22,7 @@ settings_ok(t_data *data, t_maps *maps, char *line)
 		(!ft_memcmp(line, "S ", 2) && maps->S_path) ||
 		(!ft_memcmp(line, "F ", 2) && maps->floor_color > -1) ||
 		(!ft_memcmp(line, "C ", 2) && maps->ceiling_color > -1))
-			close_program(data, "One parameter is set twice\n", "");
+		close_program(data, "One parameter is set twice\n", "");
 	if (maps->win_size.x == -1 || maps->win_size.y == -1 ||
 		maps->SO_path == NULL || maps->WE_path == NULL ||
 		maps->EA_path == NULL || maps->NO_path == NULL ||
@@ -34,8 +33,7 @@ settings_ok(t_data *data, t_maps *maps, char *line)
 		return (1);
 }
 
-	int
-check_settings(t_data *data, t_maps *maps, char *line)
+int		check_settings(t_data *data, t_maps *maps, char *line)
 {
 	int i;
 
@@ -55,17 +53,16 @@ check_settings(t_data *data, t_maps *maps, char *line)
 		|| !ft_memcmp(&line[i], "SO ", 3) || !ft_memcmp(&line[i], "WE ", 3)
 		|| !ft_memcmp(&line[i], "EA ", 3) || !ft_memcmp(&line[i], "S ", 2)
 		|| !ft_memcmp(&line[i], "F ", 2) || !ft_memcmp(&line[i], "C ", 2)))
-			close_program(data, "Invalid parameter before map\n", "");
+		close_program(data, "Invalid parameter before map\n", "");
 	return (i);
 }
 
-	void
-parse_line(t_data *data, char *line)
+void	parse_line(t_data *data, char *line)
 {
 	int i;
 
 	if ((i = check_settings(data, &data->maps, line)) == -1)
-		return;
+		return ;
 	if (line[i] == 'R' && line[i + 1] == ' ')
 		get_resolution(data, &line[i], &data->maps);
 	if (line[i] == 'N' && line[i + 1] == 'O')
@@ -86,8 +83,7 @@ parse_line(t_data *data, char *line)
 		get_map(data, line, i, &data->maps);
 }
 
-	void
-get_sprites_data(t_data *data, t_maps *maps, char **map)
+void	get_sprites_data(t_data *data, t_maps *maps, char **map)
 {
 	t_int	pos;
 	int		i;
@@ -101,20 +97,19 @@ get_sprites_data(t_data *data, t_maps *maps, char **map)
 		while (pos.x < maps->map_size.x && i < maps->spr_count)
 		{
 			if (map[pos.y][pos.x] >= '2' && map[pos.y][pos.x] <= '9')
-				{
-					maps->spr_x[i] = pos.x + 0.5;
-					maps->spr_y[i] = pos.y + 0.5;
-					maps->spr_text[i] = map[pos.y][pos.x];
-					i++;
-				}
+			{
+				maps->spr_x[i] = pos.x + 0.5;
+				maps->spr_y[i] = pos.y + 0.5;
+				maps->spr_text[i] = map[pos.y][pos.x];
+				i++;
+			}
 			pos.x++;
 		}
 		pos.y++;
 	}
 }
 
-	void
-parse_cub_file(t_data *data)
+void	parse_cub_file(t_data *data)
 {
 	int		ret;
 	char	*line;

@@ -6,34 +6,31 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:31 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:54:44 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:14:29 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-	int
-close_program(t_data *data, char *error_msg, char *str)
+int		close_program(t_data *data, char *error_msg, char *str)
 {
 	if (ft_memcmp(str, "\\o/\n", 4))
 		ft_putstr_fd("Error\n", 1);
 	ft_putstr_fd(error_msg, 1);
 	ft_putstr_fd(str, 1);
 	free_settings(&data->maps);
-	if(data->maps.done)
+	if (data->maps.done)
 	{
 		free_frame(data, &data->ray);
 		mlx_destroy_image(data->mlx, data->img.ptr);
 		mlx_destroy_window(data->mlx, data->window);
 	}
 	ft_putstr_fd("\n_END_OF_PROGRAM_\n", 1);
-//	system("sudo leaks Cub3D"); //a supprimer
 	exit(0);
 	return (0);
 }
 
-	void
-free_frame(t_data *data, t_ray *ray)
+void	free_frame(t_data *data, t_ray *ray)
 {
 	mlx_destroy_image(data->mlx, data->ray.NO_img.ptr);
 	mlx_destroy_image(data->mlx, data->ray.SO_img.ptr);
@@ -48,8 +45,7 @@ free_frame(t_data *data, t_ray *ray)
 	ray->spr_dist = NULL;
 }
 
-	void
-free_sprites(t_maps *maps)
+void	free_sprites(t_maps *maps)
 {
 	if (maps->spr_x != NULL)
 		free(maps->spr_x);
@@ -62,8 +58,7 @@ free_sprites(t_maps *maps)
 	maps->spr_text = NULL;
 }
 
-	void
-free_settings(t_maps *maps)
+void	free_settings(t_maps *maps)
 {
 	if (maps->NO_path != NULL)
 		free(maps->NO_path);
@@ -84,8 +79,7 @@ free_settings(t_maps *maps)
 	free_map(maps);
 }
 
-	void
-free_map(t_maps *maps)
+void	free_map(t_maps *maps)
 {
 	int i;
 

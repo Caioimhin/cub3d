@@ -6,15 +6,13 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:56:45 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:50:57 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 16:09:32 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "cub3d.h"
 
-	unsigned char
-*int_to_rgb(unsigned char *image, int color)
+unsigned char	*int_to_rgb(unsigned char *image, int color)
 {
 	int	blue;
 	int	green;
@@ -30,8 +28,7 @@
 	return (image);
 }
 
-	void
-get_color(t_data *data, char *line, char *color)
+void			get_color(t_data *data, char *line, char *color)
 {
 	char	*tmp;
 	int		rgb;

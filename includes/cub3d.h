@@ -164,7 +164,7 @@ free_map(t_maps *maps);
 	int
 render_next_frame(t_data *data);
 	void
-perform_DDA(t_data *data, t_ray *ray);
+perform_dda(t_data *data, t_ray *ray);
 	void
 set_ray(t_data *data, t_ray *ray, int x);
 	void
