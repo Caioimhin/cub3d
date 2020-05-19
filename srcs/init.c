@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:52 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:39:03 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:41:01 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	init_settings(t_maps *maps)
 {
 	maps->win_size.x = 0;
 	maps->win_size.y = 0;
-	maps->NO_path = NULL;
-	maps->SO_path = NULL;
-	maps->WE_path = NULL;
-	maps->EA_path = NULL;
-	maps->S_path = NULL;
+	maps->no_path = NULL;
+	maps->so_path = NULL;
+	maps->we_path = NULL;
+	maps->ea_path = NULL;
+	maps->s_path = NULL;
 	maps->floor_color = -1;
 	maps->ceiling_color = -1;
 	maps->map = NULL;
@@ -88,11 +88,11 @@ void	init_frame(t_data *data, t_maps *maps, t_ray *ray)
 	ray->pos.y = maps->starting_pos.y + 0.5;
 	maps->map[maps->starting_pos.y][maps->starting_pos.x] = '0';
 	ray->spr_sorted = 0;
-	create_texture_img(data, maps->NO_path, &ray->NO_img);
-	create_texture_img(data, maps->SO_path, &ray->SO_img);
-	create_texture_img(data, maps->WE_path, &ray->WE_img);
-	create_texture_img(data, maps->EA_path, &ray->EA_img);
-	create_texture_img(data, maps->S_path, &ray->S_img);
+	create_texture_img(data, maps->no_path, &ray->no_img);
+	create_texture_img(data, maps->so_path, &ray->so_img);
+	create_texture_img(data, maps->we_path, &ray->we_img);
+	create_texture_img(data, maps->ea_path, &ray->ea_img);
+	create_texture_img(data, maps->s_path, &ray->s_img);
 }
 
 void	init_data(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:58:25 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/14 23:54:44 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:40:51 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	print_settings(t_data *data)//outil de verification a supprimer
 	printf("\n-- maps --");
 	printf("\nwin_size.x = %.d", data->maps.win_size.x);
 	printf("\nwin_size.y = %.d", data->maps.win_size.y);
-	printf("\nNO_text_path = %s", data->maps.NO_path);
-	printf("\nSO_text_path = %s", data->maps.SO_path);
-	printf("\nWE_text_path = %s", data->maps.WE_path);
-	printf("\nEA_text_path = %s", data->maps.EA_path);
-	printf("\nSprite_text_path = %s", data->maps.S_path);
+	printf("\nno_text_path = %s", data->maps.no_path);
+	printf("\nso_text_path = %s", data->maps.so_path);
+	printf("\nwe_text_path = %s", data->maps.we_path);
+	printf("\nea_text_path = %s", data->maps.ea_path);
+	printf("\nSprite_text_path = %s", data->maps.s_path);
 	printf("\nFloor color = %d", data->maps.floor_color);
 	printf("\nCeiling color = %d", data->maps.ceiling_color);
 	printf("\nMap_width = %.d", data->maps.map_size.x);

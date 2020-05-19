@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:31 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:14:29 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:41:01 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int		close_program(t_data *data, char *error_msg, char *str)
 
 void	free_frame(t_data *data, t_ray *ray)
 {
-	mlx_destroy_image(data->mlx, data->ray.NO_img.ptr);
-	mlx_destroy_image(data->mlx, data->ray.SO_img.ptr);
-	mlx_destroy_image(data->mlx, data->ray.EA_img.ptr);
-	mlx_destroy_image(data->mlx, data->ray.WE_img.ptr);
-	mlx_destroy_image(data->mlx, data->ray.S_img.ptr);
+	mlx_destroy_image(data->mlx, data->ray.no_img.ptr);
+	mlx_destroy_image(data->mlx, data->ray.so_img.ptr);
+	mlx_destroy_image(data->mlx, data->ray.ea_img.ptr);
+	mlx_destroy_image(data->mlx, data->ray.we_img.ptr);
+	mlx_destroy_image(data->mlx, data->ray.s_img.ptr);
 	free(ray->z_buffer);
 	ray->z_buffer = NULL;
 	free(ray->spr_order);
@@ -60,21 +60,21 @@ void	free_sprites(t_maps *maps)
 
 void	free_settings(t_maps *maps)
 {
-	if (maps->NO_path != NULL)
-		free(maps->NO_path);
-	if (maps->SO_path != NULL)
-		free(maps->SO_path);
-	if (maps->WE_path != NULL)
-		free(maps->WE_path);
-	if (maps->EA_path != NULL)
-		free(maps->EA_path);
-	if (maps->S_path != NULL)
-		free(maps->S_path);
-	maps->NO_path = NULL;
-	maps->SO_path = NULL;
-	maps->WE_path = NULL;
-	maps->EA_path = NULL;
-	maps->S_path = NULL;
+	if (maps->no_path != NULL)
+		free(maps->no_path);
+	if (maps->so_path != NULL)
+		free(maps->so_path);
+	if (maps->we_path != NULL)
+		free(maps->we_path);
+	if (maps->ea_path != NULL)
+		free(maps->ea_path);
+	if (maps->s_path != NULL)
+		free(maps->s_path);
+	maps->no_path = NULL;
+	maps->so_path = NULL;
+	maps->we_path = NULL;
+	maps->ea_path = NULL;
+	maps->s_path = NULL;
 	free_sprites(maps);
 	free_map(maps);
 }

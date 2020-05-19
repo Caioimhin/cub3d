@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:58:17 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:45:02 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:40:51 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 int		settings_ok(t_data *data, t_maps *maps, char *line)
 {
 	if ((!ft_memcmp(line, "R ", 2) && maps->win_size.y) ||
-		(!ft_memcmp(line, "NO ", 3) && maps->NO_path) ||
-		(!ft_memcmp(line, "SO ", 3) && maps->SO_path) ||
-		(!ft_memcmp(line, "EA ", 3) && maps->EA_path) ||
-		(!ft_memcmp(line, "WE ", 3) && maps->WE_path) ||
-		(!ft_memcmp(line, "S ", 2) && maps->S_path) ||
+		(!ft_memcmp(line, "NO ", 3) && maps->no_path) ||
+		(!ft_memcmp(line, "SO ", 3) && maps->so_path) ||
+		(!ft_memcmp(line, "EA ", 3) && maps->ea_path) ||
+		(!ft_memcmp(line, "WE ", 3) && maps->we_path) ||
+		(!ft_memcmp(line, "S ", 2) && maps->s_path) ||
 		(!ft_memcmp(line, "F ", 2) && maps->floor_color > -1) ||
 		(!ft_memcmp(line, "C ", 2) && maps->ceiling_color > -1))
 		close_program(data, "One parameter is set twice\n", "");
 	if (maps->win_size.x == -1 || maps->win_size.y == -1 ||
-		maps->SO_path == NULL || maps->WE_path == NULL ||
-		maps->EA_path == NULL || maps->NO_path == NULL ||
-		maps->S_path == NULL || maps->floor_color == -1 ||
+		maps->so_path == NULL || maps->we_path == NULL ||
+		maps->ea_path == NULL || maps->no_path == NULL ||
+		maps->s_path == NULL || maps->floor_color == -1 ||
 		maps->ceiling_color == -1)
 		return (0);
 	else

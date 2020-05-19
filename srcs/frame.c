@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:38 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:36:38 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:41:01 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		render_next_frame(t_data *data)
 		x++;
 	}
 	sort_sprites(&data->maps, &data->ray);
-	draw_sprites(data, &data->maps, &data->ray, &data->ray.S_img);
+	draw_sprites(data, &data->maps, &data->ray, &data->ray.s_img);
 	if (data->save == 1)
 		create_bmp(data, &data->img, "start.bmp");
 	mlx_put_image_to_window(data->mlx, data->window, data->img.ptr, 0, 0);

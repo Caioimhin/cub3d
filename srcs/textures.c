@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:59:00 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:51:11 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/19 17:40:51 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ t_img	*get_texture_img(t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->ray.x > 0)
-			text_img = &ray->EA_img;
+			text_img = &ray->ea_img;
 		else
-			text_img = &ray->WE_img;
+			text_img = &ray->we_img;
 	}
 	else
 	{
 		if (ray->ray.y > 0)
-			text_img = &ray->SO_img;
+			text_img = &ray->so_img;
 		else
-			text_img = &ray->NO_img;
+			text_img = &ray->no_img;
 	}
 	ray->text.x = (int)(ray->wall_x * (double)text_img->size.x);
 	if (ray->side == 0 && ray->ray.x > 0)
@@ -48,15 +48,15 @@ void	get_texture(t_data *data, char *line, char *texture)
 		ft_memcmp(&tmp[ft_strlen(tmp) - 4], ".png", 4))
 		close_program(data, "Wrong extension for file ", texture);
 	if (!ft_strncmp(texture, "NO", 2))
-		data->maps.NO_path = ft_strdup(tmp);
+		data->maps.no_path = ft_strdup(tmp);
 	if (!ft_strncmp(texture, "SO", 2))
-		data->maps.SO_path = ft_strdup(tmp);
+		data->maps.so_path = ft_strdup(tmp);
 	if (!ft_strncmp(texture, "WE", 2))
-		data->maps.WE_path = ft_strdup(tmp);
+		data->maps.we_path = ft_strdup(tmp);
 	if (!ft_strncmp(texture, "EA", 2))
-		data->maps.EA_path = ft_strdup(tmp);
+		data->maps.ea_path = ft_strdup(tmp);
 	if (!ft_strncmp(texture, "S ", 2))
-		data->maps.S_path = ft_strdup(tmp);
+		data->maps.s_path = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
 }
