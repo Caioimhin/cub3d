@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 17:43:42 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 17:45:53 by kparis           ###   ########.fr       */
+/*   Updated: 2020/05/21 16:21:04 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,17 +223,4 @@ void			sort_sprites(t_maps *maps, t_ray *ray);
 */
 t_img			*get_texture_img(t_ray *ray);
 void			get_texture(t_data *data, char *line, char *texture);
-
-/*
-** print.c (not evaluated)
-*/
-
-void			print_settings(t_data *data);
-void			print_situation(t_data *data);
-void			print_ray(t_data *data);
-void			print_sprite_list(t_data *data);
-void			print_z_buffer(t_data *data);
-void			print_map(t_data *data);
-void			print_image(t_data *data);
-void			print_current_sprite_data(t_data *data);
 #endif

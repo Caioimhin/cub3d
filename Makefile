@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
-#    Updated: 2020/05/15 00:11:54 by kparis           ###   ########.fr        #
+#    Updated: 2020/05/21 15:17:21 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,14 @@ SRCS1			=	cub3d.c \
 					event.c \
 					exit.c \
 					frame.c \
-					img.c\
-					init.c\
-					map.c\
-					move.c\
-					parsing.c\
-					resolution.c\
-					textures.c\
-					print.c\
-					bmp.c\
+					img.c \
+					init.c \
+					map.c \
+					move.c \
+					parsing.c \
+					resolution.c \
+					textures.c \
+					bmp.c \
 					sprites.c
 
 SRCS			= $(addprefix $(SRCS_DIR), $(SRCS1))

@@ -9,7 +9,7 @@
 					"type": "cppdbg",
 					"request": "launch",
 					"program": "${workspaceFolder}/cub3d",
-					"args": ["./maps/base.cub"],
+					"args": ["--save", "./maps/base.cub"],
 					"stopAtEntry": false,
 					"cwd": "${workspaceFolder}",
 					"environment": [],

@@ -1,13 +1,13 @@
-R     700      500           
-NO   ./textures/roll.xpm         
-     
-SO ./textures/bat.xpm    
-   WE ./textures/zombie.xpm
-EA ./textures/police.xpm
+R     700      500
+NO   textures/bookshelf.xpm
 
-S ./textures/microbeB.xpm
+SO textures/crafting_table_top.xpm
+   WE textures/planks_oak.xpm
+EA textures/planks_spruce.xpm
+
+S textures/barrel.xpm
 F 50, 156, 31
-C     53, 189, 219  
+C     53, 189, 219
 
         1111111111111111111111111
         1000000000110002222222001
