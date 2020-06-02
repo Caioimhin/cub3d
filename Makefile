@@ -6,11 +6,11 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
-#    Updated: 2020/06/03 01:23:34 by kparis           ###   ########.fr        #
+#    Updated: 2020/06/03 01:42:50 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= cub3d
+NAME			=	cub3d
 
 SRCS1			=	cub3d.c \
 					colors.c \
@@ -46,11 +46,6 @@ MLX_DIR		= ./mlx/
 INCLUDES	= $(addprefix -I, $(INCLUDES_DIR) $(LIBFT_DIR) $(LIBVECT_DIR) $(MLX_DIR))
 FRAMEWORK	= -framework OpenGL -framework Appkit
 
-
-##################
-##    COLORS    ##
-##################
-
 _BLACK		= "\033[30m"
 _RED		= "\033[31m"
 _GREEN		= "\033[32m"
@@ -63,12 +58,8 @@ _END		= "\033[0m"
 _CLEAR		= "\033[2K"
 _HIDE_CURS	= "\033[?25l"
 _SHOW_CURS	= "\033[?25h"
-_UP		= "\033[A"
+_UP			= "\033[A"
 _CUT		= "\033[k"
-
-##################
-##   TARGETS    ##
-##################
 
 .PHONY: all launch clean fclean re title
 .SILENT:
