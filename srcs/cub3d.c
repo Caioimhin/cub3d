@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:06 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:10:32 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 01:24:29 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		main(int argc, char **argv)
 	parse_cub_file(&data);
 	init_data(&data);
 	hook_event(&data);
-	mlx_loop_hook(data.mlx, render_next_frame, &data);
+	mlx_loop_hook(data.mlx, render_next_ray, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }

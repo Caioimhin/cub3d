@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:31 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 17:41:01 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 01:10:05 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		close_program(t_data *data, char *error_msg, char *str)
 {
-	if (ft_memcmp(str, "\\o/\n", 4))
-		ft_putstr_fd("Error\n", 1);
-	ft_putstr_fd(error_msg, 1);
-	ft_putstr_fd(str, 1);
+	if (ft_memcmp(str, "\n", 1))
+		ft_putstr("Error\n");
+	ft_putstr(error_msg);
+	ft_putstr(str);
 	free_settings(&data->maps);
 	if (data->maps.done)
 	{
@@ -25,7 +25,6 @@ int		close_program(t_data *data, char *error_msg, char *str)
 		mlx_destroy_image(data->mlx, data->img.ptr);
 		mlx_destroy_window(data->mlx, data->window);
 	}
-	ft_putstr_fd("\n_END_OF_PROGRAM_\n", 1);
 	exit(0);
 	return (0);
 }

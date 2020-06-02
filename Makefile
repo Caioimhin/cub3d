@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
-#    Updated: 2020/05/21 15:17:21 by kparis           ###   ########.fr        #
+#    Updated: 2020/06/03 01:23:34 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ SRCS1			=	cub3d.c \
 					colors.c \
 					event.c \
 					exit.c \
-					frame.c \
+					raycasting.c \
 					img.c \
-					init.c \
+					init_raycasting.c \
 					map.c \
 					move.c \
 					parsing.c \

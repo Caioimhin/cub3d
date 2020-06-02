@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 17:43:42 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/21 16:21:04 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 01:25:36 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define KEY_ESC 53
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-# define KEY_P 35
 
 typedef struct	s_coord{
 	double		x;
@@ -72,7 +71,7 @@ typedef struct	s_settings{
 	int			done;
 }				t_maps;
 
-typedef struct	s_frame{
+typedef struct	s_ray {
 	t_coord		pos;
 	t_coord		dir;
 	t_coord		ray;
@@ -142,7 +141,7 @@ void			get_color(t_data *data, char *line, char *color);
 void			look_left(t_ray *ray);
 void			look_right(t_ray *ray);
 int				press_key(int key, t_data *data);
-int				red_cross(t_data *data);
+int				cross_press(t_data *data);
 void			hook_event(t_data *data);
 
 /*
@@ -156,7 +155,7 @@ void			free_map(t_maps *maps);
 /*
 ** ray.c
 */
-int				render_next_frame(t_data *data);
+int				render_next_ray(t_data *data);
 void			perform_dda(t_data *data, t_ray *ray);
 void			set_ray(t_data *data, t_ray *ray, int x);
 void			set_drawing_limits(t_data *data, t_ray *ray);
@@ -174,7 +173,7 @@ void			create_texture_img(t_data *data, char *path, t_img *textimg);
 void			init_settings(t_maps *maps);
 void			init_dir_and_plane(t_maps *maps, t_ray *ray);
 void			init_sprites(t_data *data, t_maps *maps, t_ray *ray);
-void			init_frame(t_data *data, t_maps *maps, t_ray *ray);
+void			init_ray(t_data *data, t_maps *maps, t_ray *ray);
 void			init_data(t_data *data);
 
 /*

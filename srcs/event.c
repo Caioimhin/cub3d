@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:17 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:12:22 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 01:05:35 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ void	look_right(t_ray *ray)
 
 int		press_key(int key, t_data *data)
 {
-	if (key == KEY_P)
-		create_bmp(data, &data->img, "./screenshots/screenshot");
 	if (key == KEY_ESC)
-		close_program(data, "\nEverything went well ! ", "\\o/\n");
+		close_program(data, "\nEverything went well ! ", "\n");
 	if (key == KEY_LEFT)
 		look_left(&data->ray);
 	if (key == KEY_RIGHT)
@@ -68,7 +66,7 @@ int		press_key(int key, t_data *data)
 	return (key);
 }
 
-int		red_cross(t_data *data)
+int		cross_press(t_data *data)
 {
 	close_program(data, "\nEverything went well ! ", "\\o/\n");
 	return (0);
@@ -77,6 +75,6 @@ int		red_cross(t_data *data)
 void	hook_event(t_data *data)
 {
 	mlx_hook(data->window, 2, 1L << 0, press_key, data);
-	mlx_hook(data->window, 17, 1L << 17, red_cross, data);
+	mlx_hook(data->window, 17, 1L << 17, cross_press, data);
 	return ;
 }

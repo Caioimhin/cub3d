@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:52 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 17:41:01 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 00:59:49 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	init_sprites(t_data *data, t_maps *maps, t_ray *ray)
 		close_program(data, "Failed allocating spr_dist", "");
 }
 
-void	init_frame(t_data *data, t_maps *maps, t_ray *ray)
+void	init_ray(t_data *data, t_maps *maps, t_ray *ray)
 {
 	init_dir_and_plane(maps, ray);
 	ray->pos.x = maps->starting_pos.x + 0.5;
@@ -111,5 +111,5 @@ void	init_data(t_data *data)
 			&img->line_length, &img->endian);
 	img->size.x = data->maps.win_size.x;
 	img->size.y = data->maps.win_size.y;
-	init_frame(data, &data->maps, &data->ray);
+	init_ray(data, &data->maps, &data->ray);
 }
