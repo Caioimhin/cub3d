@@ -27,7 +27,7 @@ int		is_map(t_data *data, t_maps *maps, int x, int y)
 		return (3);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		if (maps->player_orientation == (char)NULL)
+		if (maps->player_orientation == 0)
 		{
 			maps->player_orientation = c;
 			maps->starting_pos.x = x;
@@ -62,7 +62,7 @@ int		check_map_errors(t_data *data, t_maps *maps)
 		}
 		y++;
 	}
-	if (maps->player_orientation == (char)NULL)
+	if (maps->player_orientation == 0)
 		close_program(data, "No map or no player set :'(", "");
 	return (0);
 }

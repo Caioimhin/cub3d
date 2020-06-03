@@ -26,7 +26,7 @@ void	init_settings(t_maps *maps)
 	maps->map = NULL;
 	maps->map_size.x = 1;
 	maps->map_size.y = 0;
-	maps->player_orientation = (char)NULL;
+	maps->player_orientation = 0;
 	maps->starting_pos.x = -1;
 	maps->starting_pos.y = -1;
 	maps->spr_count = 0;
@@ -103,6 +103,7 @@ void	init_data(t_data *data)
 	win_size.x = data->maps.win_size.x;
 	win_size.y = data->maps.win_size.y;
 	data->mlx = mlx_init();
+	check_res_values(data, &data->maps);
 	data->window = mlx_new_window(data->mlx, win_size.x, win_size.y, "Cub3D");
 	img = &data->img;
 	img->ptr = mlx_new_image(data->mlx, data->maps.win_size.x,

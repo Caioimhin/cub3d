@@ -21,13 +21,13 @@
 # include <mlx.h>
 # include <math.h>
 # include "../libft/libft.h"
-# define KEY_Q 0
-# define KEY_S 1
-# define KEY_D 2
-# define KEY_Z 13
-# define KEY_ESC 53
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+# define KEY_Q 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_Z 119
+# define KEY_ESC 65307
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 typedef struct	s_coord{
 	double		x;
@@ -208,6 +208,7 @@ void			parse_cub_file(t_data *data);
 ** resolution.c
 */
 void			get_resolution(t_data *data, char *line, t_maps *maps);
+void			check_res_values(t_data *data, t_maps *maps);
 
 /*
 ** sprites.c

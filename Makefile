@@ -40,11 +40,11 @@ MINILIBX		= $(MLX_DIR)libmlx.a
 HEADER			= $(INCLUDES_DIR)cub3d.h
 
 CFLAGS			= -Wall -Wextra -Werror -O2 -g
-CC				= gcc
+CC				= clang
 
 MLX_DIR		= ./mlx/
 INCLUDES	= $(addprefix -I, $(INCLUDES_DIR) $(LIBFT_DIR) $(LIBVECT_DIR) $(MLX_DIR))
-FRAMEWORK	= -framework OpenGL -framework Appkit
+FRAMEWORK	= -lm -lXext -lX11 -lbsd
 
 _BLACK		= "\033[30m"
 _RED		= "\033[31m"
@@ -58,7 +58,7 @@ _END		= "\033[0m"
 _CLEAR		= "\033[2K"
 _HIDE_CURS	= "\033[?25l"
 _SHOW_CURS	= "\033[?25h"
-_UP			= "\033[A"
+_UP		= "\033[A"
 _CUT		= "\033[k"
 
 .PHONY: all launch clean fclean re title
@@ -104,3 +104,5 @@ fclean: clean
 re:
 	$(MAKE) -s fclean
 	$(MAKE) -s
+
+

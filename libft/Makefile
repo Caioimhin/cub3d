@@ -64,7 +64,7 @@ SRC =	ft_atoi.c \
 
 OBJ = $(SRC:.c=.o)
 CFLAGS += -Wall -Wextra -Werror -g -I./
-CC = gcc
+CC = clang
 .c.o:
 		@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 $(NAME):	$(OBJ)
