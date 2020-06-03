@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:54:14 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/03 01:09:38 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/03 02:37:36 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			fill_bmp(t_data *data,
 	unsigned char	*file_header;
 	unsigned char	*info_header;
 	int				i;
+	int				ret;
 
 	padding[0] = 0;
 	padding[1] = 0;
@@ -69,16 +70,17 @@ void			fill_bmp(t_data *data,
 	i = (4 - (img->size.x * img->bpp / 8) % 4) % 4;
 	file_header = create_bmp_file_header(img, i);
 	info_header = create_bmp_info_header(img);
-	write(bmp_fd, file_header, 14);
-	write(bmp_fd, info_header, 40);
+	ret = write(bmp_fd, file_header, 14);
+	ret = write(bmp_fd, info_header, 40);
 	i = 0;
 	while (i < img->size.y)
 	{
-		write(bmp_fd, image + (i * 4 * img->size.x), 4 * img->size.x);
-		write(bmp_fd, padding, (4 - (img->size.x * img->bpp / 8) % 4) % 4);
+		ret = write(bmp_fd, image + (i * 4 * img->size.x), 4 * img->size.x);
+		ret = write(bmp_fd, padding,
+			(4 - (img->size.x * img->bpp / 8) % 4) % 4);
 		i++;
 	}
-	if (close(bmp_fd) < 0)
+	if (close(bmp_fd) < 0 || ret < 0)
 		close_program(data, "Couldn't close bmp fd", "");
 }
 

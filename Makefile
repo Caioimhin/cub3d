@@ -6,7 +6,7 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
-#    Updated: 2020/06/03 01:42:50 by kparis           ###   ########.fr        #
+#    Updated: 2020/06/03 02:30:47 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ MINILIBX		= $(MLX_DIR)libmlx.a
 HEADER			= $(INCLUDES_DIR)cub3d.h
 
 CFLAGS			= -Wall -Wextra -Werror -O2 -g
-CC				= gcc
+CC				= clang
 
 MLX_DIR		= ./mlx/
 INCLUDES	= $(addprefix -I, $(INCLUDES_DIR) $(LIBFT_DIR) $(LIBVECT_DIR) $(MLX_DIR))
