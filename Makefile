@@ -96,6 +96,7 @@ clean:
 	$(MAKE) -sC libft clean
 	$(MAKE) -sC $(MLX_DIR) clean
 	$(RM) -r $(OBJS_DIR)
+	$(RM) start.bmp
 
 fclean: clean
 	$(MAKE) -sC libft fclean
