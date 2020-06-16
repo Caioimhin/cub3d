@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:59 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/16 13:57:02 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 15:30:57 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		check_map_errors(t_data *data, t_maps *maps)
 		y++;
 	}
 	if (maps->player_orientation == 0)
-		close_program(data, "No map or no player set :'(", "");
+		close_program(data, "No map or no player set", "");
 	return (0);
 }
 
