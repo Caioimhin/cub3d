@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:58:17 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/03 01:02:38 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 15:38:39 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	get_sprites_data(t_data *data, t_maps *maps, char **map)
 		pos.x = 0;
 		while (pos.x < maps->map_size.x && i < maps->spr_count)
 		{
-			if (map[pos.y][pos.x] >= '2' && map[pos.y][pos.x] <= '9')
+			if (map[pos.y][pos.x] == '2')
 			{
 				maps->spr_x[i] = pos.x + 0.5;
 				maps->spr_y[i] = pos.y + 0.5;
