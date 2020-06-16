@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:59 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/16 13:43:46 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 13:57:02 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,6 @@ void	check_around(t_data *data, t_maps *maps, int x, int y)
 		i++;
 	}
 }
-
-/*
-** NB : map_size.y has not yet been incremented in fill_tmp hence +1 each time
-*/
 
 char	**get_tmp_map(t_data *data, t_maps *maps, char **tmp, char *line)
 {
