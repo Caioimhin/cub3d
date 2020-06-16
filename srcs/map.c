@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:59 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/16 13:36:45 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 13:58:35 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		check_map_errors(t_data *data, t_maps *maps)
 			if (!is_map(data, maps, x, y))
 				close_program(data, "Wrong object in map", "");
 			if (is_map(data, maps, x, y) >= 3)
-				check_square_neighbors(data, maps, x, y);
+				check_around(data, maps, x, y);
 			x++;
 		}
 		y++;
@@ -67,7 +67,7 @@ int		check_map_errors(t_data *data, t_maps *maps)
 	return (0);
 }
 
-void	check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
+void	check_around(t_data *data, t_maps *maps, int x, int y)
 {
 	int i;
 	int j;
@@ -93,10 +93,6 @@ void	check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 		i++;
 	}
 }
-
-/*
-** NB : map_size.y has not yet been incremented in fill_tmp hence +1 each time
-*/
 
 char	**get_tmp_map(t_data *data, t_maps *maps, char **tmp, char *line)
 {
