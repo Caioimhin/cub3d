@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:57:59 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 16:41:23 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 13:43:46 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		check_map_errors(t_data *data, t_maps *maps)
 			if (!is_map(data, maps, x, y))
 				close_program(data, "Wrong object in map", "");
 			if (is_map(data, maps, x, y) >= 3)
-				check_square_neighbors(data, maps, x, y);
+				check_around(data, maps, x, y);
 			x++;
 		}
 		y++;
@@ -67,12 +67,12 @@ int		check_map_errors(t_data *data, t_maps *maps)
 	return (0);
 }
 
-void	check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
+void	check_around(t_data *data, t_maps *maps, int x, int y)
 {
 	int i;
 	int j;
 
-	if (maps->map[y][x] >= '2' && maps->map[y][x] <= '9')
+	if (maps->map[y][x] == '2')
 		maps->spr_count++;
 	i = x - 1;
 	while (i <= x + 1)
@@ -80,7 +80,11 @@ void	check_square_neighbors(t_data *data, t_maps *maps, int x, int y)
 		j = y - 1;
 		while (j <= y + 1)
 		{
-			if (maps->map[j][i] == '\0' || maps->map[j][i] == ' ')
+			if (maps->map[j][i] == '\0' ||
+			(maps->map[j][i] == ' ' && maps->map[j][i + 1] != '1') ||
+			(maps->map[j][i] == ' ' && maps->map[j][i - 1] != '1') ||
+			(maps->map[j][i] == ' ' && maps->map[j - 1][i] != '1') ||
+			(maps->map[j][i] == ' ' && maps->map[j + 1][i] != '1'))
 				close_program(data, "Map not closed", "");
 			if (!is_map(data, maps, i, j))
 				close_program(data, "Wrong object in map", "");

@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 17:43:42 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/03 01:25:36 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/16 13:43:46 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void			init_data(t_data *data);
 */
 int				is_map(t_data *data, t_maps *maps, int i, int j);
 int				check_map_errors(t_data *data, t_maps *maps);
-void			check_square_neighbors(t_data *data, t_maps *maps,
+void			check_around(t_data *data, t_maps *maps,
 	int i, int j);
 char			**get_tmp_map(t_data *data, t_maps *maps,
 	char **tmp, char *line);
