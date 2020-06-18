@@ -6,11 +6,11 @@
 #    By: kparis <kparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/13 18:59:41 by kparis            #+#    #+#              #
-#    Updated: 2020/06/03 01:42:50 by kparis           ###   ########.fr        #
+#    Updated: 2020/06/18 18:25:40 by kparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	cub3d
+NAME			=	Cub3d
 
 SRCS1			=	cub3d.c \
 					colors.c \
