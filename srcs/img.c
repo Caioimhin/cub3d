@@ -26,7 +26,7 @@ void	create_texture_img(t_data *data, char *path, t_img *text)
 	text->ptr =
 		mlx_xpm_file_to_image(data->mlx, path, &text->size.x, &text->size.y);
 	if (text->ptr == NULL)
-		close_program(data, "Invalid or missing texture at :\n   > ", path);
+		close_program(data, "Invalid or missing texture", "");
 	text->colors = (int*)mlx_get_data_addr(text->ptr, &text->bpp,
 			&text->line_length, &text->endian);
 }

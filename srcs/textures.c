@@ -59,7 +59,7 @@ void	get_texture(t_data *data, char *line, char *texture)
 		data->maps.s_path = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
-	ft_putendl(texture);
+	test_path(data, texture);
 }
 
 void	test_path(t_data *data, char *texture)

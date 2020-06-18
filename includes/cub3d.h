@@ -223,4 +223,5 @@ void			sort_sprites(t_maps *maps, t_ray *ray);
 */
 t_img			*get_texture_img(t_ray *ray);
 void			get_texture(t_data *data, char *line, char *texture);
+void			test_path(t_data *data, char *texture);
 #endif
