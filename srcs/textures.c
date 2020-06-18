@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:59:00 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 17:40:51 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/18 18:34:41 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ void	get_texture(t_data *data, char *line, char *texture)
 		data->maps.s_path = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
+	ft_putendl(texture);
+}
+
+void	test_path(t_data *data, char *path)
+{
+	int fd;
+
+	if ((fd = open(path, O_RDWR | O_CREAT | O_TRUNC,
+				S_IRWXU | S_IRWXG | S_IRWXO)) == -1)
+		close_program(data, "Couldn't open all the textures path", "");
 }
