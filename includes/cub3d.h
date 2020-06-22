@@ -118,6 +118,7 @@ typedef struct	s_data{
 */
 void			check_args_errors(t_data *data, int argc, char **argv);
 int				main(int argc, char **argv);
+void			wrong_args(char *msg);
 
 /*
 ** bmp.c

@@ -12,12 +12,18 @@
 
 #include "cub3d.h"
 
+void	wrong_args(char *msg)
+{
+	ft_putendl(msg);
+	exit(0);
+}
+
 void	check_args_errors(t_data *data, int argc, char **argv)
 {
 	if (argc == 1 || argc > 3)
-		close_program(data, "Invalid number of arguments\n", "");
+		wrong_args("Invalid arguments number");
 	if (argc == 3 && ft_memcmp(argv[1], "--save", 6))
-		close_program(data, "Second argument is not --save\n", "");
+		wrong_args("--save is not the second argument");
 	else if (argc == 3)
 		data->save = 1;
 	else
@@ -25,16 +31,16 @@ void	check_args_errors(t_data *data, int argc, char **argv)
 	if (argc == 3)
 	{
 		if (ft_memcmp(&argv[2][ft_strlen(argv[2]) - 4], ".cub", 4))
-			exit(0);
+			wrong_args("Invalid file extension");
 		if ((data->maps.fd = open(argv[2], O_RDONLY)) == -1)
-			exit(0);
+			wrong_args("Couldn't open .cub file");
 	}
 	else
 	{
 		if (ft_memcmp(&argv[1][ft_strlen(argv[1]) - 4], ".cub", 4))
-			exit(0);
+			wrong_args("Invalid file extension");
 		if ((data->maps.fd = open(argv[1], O_RDONLY)) == -1)
-			exit(0);
+			wrong_args("Couldn't open .cub file");
 	}
 }
 
