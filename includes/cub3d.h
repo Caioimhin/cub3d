@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/19 17:43:42 by kparis            #+#    #+#             */
-/*   Updated: 2020/06/16 13:58:35 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/22 15:07:52 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct	s_data{
 */
 void			check_args_errors(t_data *data, int argc, char **argv);
 int				main(int argc, char **argv);
+void			wrong_args(char *msg);
 
 /*
 ** bmp.c
