@@ -130,4 +130,5 @@ void			create_bmp(t_data *data, t_img *img, char *path)
 	fill_bmp(data, (unsigned char *)image, img, bmp_fd);
 	free(path);
 	path = NULL;
+	close_program(data, "Screenshot done", "\n");
 }

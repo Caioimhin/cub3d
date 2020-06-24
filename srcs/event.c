@@ -68,13 +68,13 @@ int		press_key(int key, t_data *data)
 
 int		cross_press(t_data *data)
 {
-	close_program(data, "\nEverything went well ! ", "\\o/\n");
+	close_program(data, "\nEverything went well ! ", "\n");
 	return (0);
 }
 
 void	hook_event(t_data *data)
 {
 	mlx_hook(data->window, 2, 1L << 0, press_key, data);
-	mlx_hook(data->window, 17, 1L << 17, cross_press, data);
+	mlx_hook(data->window, 33, 1L << 17, cross_press, data);
 	return ;
 }
