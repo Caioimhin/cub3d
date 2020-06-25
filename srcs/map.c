@@ -80,11 +80,7 @@ void	check_around(t_data *data, t_maps *maps, int x, int y)
 		j = y - 1;
 		while (j <= y + 1)
 		{
-			if (maps->map[j][i] == '\0' ||
-			(maps->map[j][i] == ' ' && maps->map[j][i + 1] != '1') ||
-			(maps->map[j][i] == ' ' && maps->map[j][i - 1] != '1') ||
-			(maps->map[j][i] == ' ' && maps->map[j - 1][i] != '1') ||
-			(maps->map[j][i] == ' ' && maps->map[j + 1][i] != '1'))
+			if (maps->map[j][i] == ' ' || maps->map[j][i] == '\0')
 				close_program(data, "Map not closed", "");
 			if (!is_map(data, maps, i, j))
 				close_program(data, "Wrong object in map", "");
