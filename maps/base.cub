@@ -1,4 +1,4 @@
-R 3000 2000
+R  800 600
 NO textures/bookshelf.xpm
 SO textures/crafting_table_top.xpm
 WE textures/planks_oak.xpm

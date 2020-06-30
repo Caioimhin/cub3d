@@ -14,7 +14,7 @@ int		check_limit(long int res, char c, int sign)
 {
 	if ((res > 922337203685477580 || (res == 922337203685477580
 		&& (c - '0') > 7)) && sign == 1)
-		return (-1);
+		return (10101010);
 	else if ((res > 922337203685477580 || (res == 922337203685477580
 		&& (c - '0') > 8)) && sign == -1)
 		return (0);

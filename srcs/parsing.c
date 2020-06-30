@@ -63,7 +63,7 @@ void	parse_line(t_data *data, char *line)
 
 	if ((i = check_settings(data, &data->maps, line)) == -1)
 		return ;
-	if (line[i] == 'R' && line[i + 1] == ' ')
+	if (line[i] == 'R')
 		get_resolution(data, &line[i], &data->maps);
 	if (line[i] == 'N' && line[i + 1] == 'O')
 		get_texture(data, &line[i], "NO");
