@@ -24,27 +24,40 @@ void	check_res_values(t_data *data, t_maps *maps)
 		maps->win_size.y = y;
 }
 
+int		check_absurd(char *line, int *res, int i)
+{
+	int count;
+	
+	count = 0;
+	while (ft_isdigit(line[i]))
+	{
+		count++;
+		if (count > 6)
+			*res = 10101010;
+		else
+			*res = (*res * 10) + (line[i] - '0');
+		i++;
+	}
+	return (i);
+}
+
 void	get_resolution(t_data *data, char *line, t_maps *maps)
 {
 	int	i;
 
 	i = 1;
-	maps->win_size.x = -1;
-	maps->win_size.y = -1;
+	maps->win_size.x = 0;
+	maps->win_size.y = 0;
 	while (line[i] == ' ')
 		i++;
-	while (ft_isdigit(line[i]))
-		maps->win_size.x = (maps->win_size.x * 10) + (line[i++] - '0');
+	i = check_absurd(line, &maps->win_size.x, i);
 	while (line[i] == ' ')
 		i++;
-	while (ft_isdigit(line[i]))
-		maps->win_size.y = (maps->win_size.y * 10) + (line[i++] - '0');
+	i = check_absurd(line, &maps->win_size.y, i);
 	while (line[i] == ' ')
 		i++;
 	if (line[i])
 		close_program(data, "Wrong resolution in .cub file\n", "");
 	if (maps->win_size.x < 50 || maps->win_size.y < 50)
-		close_program(data, "Resolution is too small\n", "");
-	if (maps->win_size.x == -1 || maps->win_size.y == -1)
-		close_program(data, "Resolution is not set\n", "");
+		close_program(data, "Resolution is too small or not set\n", "");
 }
