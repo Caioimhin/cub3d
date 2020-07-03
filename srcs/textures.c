@@ -6,7 +6,7 @@
 /*   By: kparis <kparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/13 18:59:00 by kparis            #+#    #+#             */
-/*   Updated: 2020/05/19 17:40:51 by kparis           ###   ########.fr       */
+/*   Updated: 2020/06/24 17:25:26 by kparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,26 @@ void	get_texture(t_data *data, char *line, char *texture)
 		data->maps.s_path = ft_strdup(tmp);
 	free(tmp);
 	tmp = NULL;
+	test_path(data, texture);
+}
+
+void	test_path(t_data *data, char *texture)
+{
+	int fd;
+
+	if (!ft_strncmp(texture, "NO", 2))
+		if ((fd = open(data->maps.no_path, O_RDONLY)) == -1)
+			close_program(data, "Couldn't open all the textures path", "");
+	if (!ft_strncmp(texture, "SO", 2))
+		if ((fd = open(data->maps.so_path, O_RDONLY)) == -1)
+			close_program(data, "Couldn't open all the textures path", "");
+	if (!ft_strncmp(texture, "WE", 2))
+		if ((fd = open(data->maps.we_path, O_RDONLY)) == -1)
+			close_program(data, "Couldn't open all the textures path", "");
+	if (!ft_strncmp(texture, "EA", 2))
+		if ((fd = open(data->maps.ea_path, O_RDONLY)) == -1)
+			close_program(data, "Couldn't open all the textures path", "");
+	if (!ft_strncmp(texture, "S ", 2))
+		if ((fd = open(data->maps.s_path, O_RDONLY)) == -1)
+			close_program(data, "Couldn't open all the textures path", "");
 }
