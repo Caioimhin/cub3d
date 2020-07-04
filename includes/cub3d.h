@@ -210,6 +210,7 @@ void			parse_cub_file(t_data *data);
 */
 void			get_resolution(t_data *data, char *line, t_maps *maps);
 void			check_res_values(t_data *data, t_maps *maps);
+int				check_absurd(char *line, int *res, int i);
 
 /*
 ** sprites.c

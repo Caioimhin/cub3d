@@ -27,7 +27,7 @@ void	check_res_values(t_data *data, t_maps *maps)
 int		check_absurd(char *line, int *res, int i)
 {
 	int count;
-	
+
 	count = 0;
 	while (ft_isdigit(line[i]))
 	{
